@@ -1,0 +1,57 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+*::selection {
+	color: #fff;
+	background-color: #93d5dc;
+}
+a {
+	text-decoration: none;
+}
+// 隐藏滚动条
+::-webkit-scrollbar {
+	width: 0;
+}
+.main {
+	display: flex;
+	flex-flow: column nowrap;
+	min-width: 1000px;
+	min-height: 100vh;
+}
+// 版心
+.container {
+	position: relative;
+	margin: 0 auto;
+	width: 1000px;
+}
+// flex盒子
+.fRow {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+}
+.fColumn {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+}
+// 鼠标悬停
+.hover:hover {
+	opacity: 0.8;
+	cursor: pointer;
+}
+// 系统登录
+.sysLogin{
+	background: url(../assets/sysLoginBg.jpg) repeat-x;
+	// 系统登录banner
+	.sysLoginBanner {
+		margin: 20px 0;
+		height: 110px;
+		background: url(../assets/sysLoginBanner.jpg) center/cover no-repeat;
+		box-shadow: 0 1px 3px #ccc;
+	}
+}
