@@ -4,18 +4,13 @@
 		<div class="loginWrapper">
 			<div class="loginBox">
 				<div class="title">单位用户登录</div>
-				<div class="subtitle">选择证书：</div>
-				<select>
-					<option>淄博问云教育有限公司</option>
-				</select>
-				<div class="subtitle">
-					密码：
-					<span>（使用UKey的pin码）</span>
-				</div>
-				<input type="password" v-model="password" />
+				<div class="subtitle">用户编号：</div>
+				<input type="text" v-model="iAccount" />
+				<div class="subtitle">密码：</div>
+				<input type="password" v-model="iPassword" />
 				<div class="subtitle">验证码：</div>
 				<div class="vCodeBox">
-					<input type="text" name="vCode" maxlength="4" v-model="vCode" />
+					<input type="text" name="iVCode" maxlength="4" v-model="iVCode" />
 					<img class="vCodeImg" src="../../assets/verificationCode.png" />
 				</div>
 				<div class="loginBtn hover" @click="login()">登录</div>
@@ -85,8 +80,9 @@ export default {
 	name: 'SysLoginBd',
 	data: function() {
 		return {
-			password: '', //密码
-			vCode: '', //验证码
+			iAccount: '', //账号 用户输入
+			iPassword: '', //密码 用户输入
+			iVCode: '', //验证码 用户输入
 			notice: [
 				{
 					title: '关于转发《山东省人力资源和社会保障厅转发的通知》的通知',
@@ -139,14 +135,30 @@ export default {
 			] //常见问题
 		};
 	},
+	computed: {
+		// 账号
+		account() {
+			return this.$store.state.entInfo.entAccount.accountName;
+		},
+		// 密码
+		password() {
+			return this.$store.state.entInfo.entAccount.password;
+		}
+	},
 	methods: {
 		login() {
-			if (this.password != '123456') {
-				this.$message.warning('密码错误');
-			} else if (this.vCode != '6060') {
+			if (this.iAccount != this.account || this.iPassword != this.password) {
+				this.$message.warning('账号或密码错误');
+			} else if (this.iVCode != '6060') {
 				this.$message.warning('验证码错误');
 			} else {
 				this.$message.success('登陆成功');
+
+				if (this.$route.fullPath == '/sILogin') {
+					this.$router.push({ path: '/sIOfficeHall' });
+				} else if (this.$route.fullPath == '/mILogin') {
+					this.$router.push({ path: '/mIOfficeHall' });
+				}
 			}
 		}
 	}
@@ -182,9 +194,6 @@ export default {
 				margin: 10px 0;
 				color: #666;
 				font-weight: bold;
-				span {
-					color: #ed3321;
-				}
 			}
 			select,
 			input {
@@ -197,7 +206,7 @@ export default {
 			.vCodeBox {
 				display: flex;
 				align-items: center;
-				input[name='vCode'] {
+				input[name='iVCode'] {
 					width: 80px;
 				}
 				.vCodeImg {

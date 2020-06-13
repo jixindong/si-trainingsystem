@@ -45,13 +45,13 @@ export default {
 		},
 		// 设置当前页面标识
 		setCurrentSign() {
-			if(this.$route.fullPath == '/sILogin'){
+			if (this.$route.fullPath == '/sILogin') {
 				this.currentSign = 's';
-			}else if(this.$route.fullPath == '/mILogin'){
+			} else if (this.$route.fullPath == '/mILogin') {
 				this.currentSign = 'm';
 			}
 		},
-		// 设置按钮
+		// 设置
 		setting(e) {
 			if (e == 0) {
 				// 刷新
@@ -61,6 +61,7 @@ export default {
 				this.$router.push({
 					path: '/mILogin'
 				});
+				this.$message.success('切换为【医保】');
 				// 设置当前页面标识
 				this.setCurrentSign();
 			} else if (e == 2) {
@@ -68,15 +69,19 @@ export default {
 				this.$router.push({
 					path: '/sILogin'
 				});
+				this.$message.success('切换为【社保】');
 				// 设置当前页面标识
 				this.setCurrentSign();
-			}else if(e == 3){
+			} else if (e == 3) {
 				// 清除Cookie
 				this.$message.success('痕迹已清除');
-			}else if(e == 6){
+			} else if (e == 4) {
+				// 开发者工具
+				this.$message.info('请按 F12');
+			} else if (e == 6) {
 				// 关于
-				this.$alert('当前版本 V1.1.3','关于',{
-					confirmButtonText:'关闭'
+				this.$alert('当前版本 V1.1.3', '关于', {
+					confirmButtonText: '关闭'
 				});
 			}
 		}

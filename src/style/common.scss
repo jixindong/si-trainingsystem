@@ -11,14 +11,42 @@ a {
 	text-decoration: none;
 }
 // 隐藏滚动条
+// ::-webkit-scrollbar {
+// 	width: 0;
+// 	height: 0;
+// 	opacity: 0;
+// }
+// ::-webkit-scrollbar-track{
+// 	background-color: transparent;
+// }
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
 ::-webkit-scrollbar {
-	width: 0;
+	width: 8px;
+	height: 8px;
+	background-color: transparent;
 }
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	background-color: #eee;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+	border-radius: 8px;
+	-webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.11);
+	background-color: #cccccc90;
+}
+
+// 主体
 .main {
 	display: flex;
 	flex-flow: column nowrap;
-	min-width: 1000px;
+	min-width: 1400px;
 	min-height: 100vh;
+	overflow: hidden;
 }
 // 版心
 .container {
@@ -44,8 +72,32 @@ a {
 	opacity: 0.8;
 	cursor: pointer;
 }
+// margin
+.mgT20 {
+	margin-top: 20px;
+}
+.mgR10 {
+	margin-right: 10px;
+}
+.mgR20 {
+	margin-right: 20px;
+}
+.mgB10 {
+	margin-bottom: 10px;
+}
+.mgB20 {
+	margin-bottom: 20px;
+}
+.mgLAuto {
+	margin-left: auto;
+}
+// width
+.w90 {
+	width: 90%;
+}
+
 // 系统登录
-.sysLogin{
+.sysLogin {
 	background: url(../assets/sysLoginBg.jpg) repeat-x;
 	// 系统登录banner
 	.sysLoginBanner {
@@ -55,3 +107,355 @@ a {
 		box-shadow: 0 1px 3px #ccc;
 	}
 }
+// 系统登录 end
+
+// 办事大厅tab切换
+.oHTab {
+	display: flex;
+	border-bottom: 1px solid #0094ff;
+	.oHLink {
+		position: relative;
+		padding: 10px 20px;
+		color: #333;
+		font-size: 14px;
+		font-weight: 600;
+		&::after {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 2px;
+			background-color: #0094ff;
+		}
+		&.router-link-active {
+			background-color: #eee;
+			&::after {
+				content: '';
+			}
+		}
+	}
+}
+// 办事大厅tab切换 end
+
+// 办事大厅 主体
+.oHBd {
+	flex: 1;
+	display: flex;
+	flex-flow: row nowrap;
+	padding: 10px 0;
+	background-color: #eee;
+	// 办事大厅 主体-首页 侧边栏
+	.oHBdSidebar {
+		justify-content: flex-start;
+		margin-right: 10px;
+		width: 200px;
+		background-color: #fff;
+		box-shadow: 0 1px 3px #ccc;
+		.oHBdSidebarLink {
+			width: 100%;
+			height: 46px;
+			color: #1a1a1a;
+			img {
+				margin-right: 10px;
+			}
+			&.router-link-active {
+				background-color: #fdf0ff;
+			}
+		}
+	}
+	// 办事大厅 主体-首页 侧边栏 end
+	// 办事大厅 主体-首页 面板-概况信息
+	.oHIInfo {
+		flex: 1;
+		justify-content: flex-start;
+		// 顶部
+		.hd {
+			display: flex;
+			flex-flow: row nowrap;
+			padding: 12px 20px;
+			width: 100%;
+			background-color: #fff;
+			box-shadow: 0 1px 3px #ccc;
+			.entMsg {
+				align-items: flex-start;
+				margin: 0 auto 0 20px;
+				.functionBox {
+					justify-content: flex-start;
+					.functionItem {
+						margin: 10px 40px 0 0;
+						font-size: 14px;
+						.tipText {
+							align-items: flex-start;
+							margin-left: 10px;
+							.sort {
+								color: #28b924;
+							}
+							.sortII {
+								color: #e88400;
+							}
+							.sortIII {
+								color: #0f89dd;
+							}
+						}
+					}
+				}
+			}
+			.laborNotice {
+				justify-content: space-evenly;
+				align-items: flex-start;
+				font-size: 14px;
+				.notice {
+					span {
+						padding: 0 10px;
+						background-color: rgb(69, 207, 162);
+						border-radius: 10px;
+					}
+				}
+			}
+		}
+		// 顶部 end
+		// 中部
+		.bd {
+			justify-content: space-between;
+			align-items: flex-start;
+			margin: 10px 0;
+			width: 100%;
+			.msgBox {
+				flex: 1;
+				justify-content: flex-start;
+				align-items: flex-start;
+				padding: 10px 20px;
+				height: 200px;
+				background-color: #fff;
+				box-shadow: 0 1px 3px #ccc;
+				.titleBox {
+					justify-content: flex-start;
+					img {
+						margin: 0 5px;
+					}
+					span {
+						margin: 0 auto 0 10px;
+						color: #333;
+					}
+				}
+				.contentBox {
+					margin-top: 10px;
+					padding-left: 20px;
+					height: 148px;
+					color: #1a1a1a;
+					font-size: 14px;
+					overflow-y: auto;
+					.msgItem {
+						position: relative;
+						justify-content: space-between;
+						margin: 5px 0;
+						&::before {
+							position: absolute;
+							left: -16px;
+							width: 5px;
+							height: 5px;
+							content: '';
+							background-color: #aaa;
+							border-radius: 50%;
+						}
+						.textEllipsis {
+							max-width: 240px;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+							overflow: hidden;
+						}
+					}
+				}
+			}
+		}
+		// 中部 end
+		// 底部
+		.ft {
+			flex: 1;
+			justify-content: flex-start;
+			align-items: flex-start;
+			padding: 10px 20px;
+			width: 100%;
+			background-color: #fff;
+			box-shadow: 0 1px 3px #ccc;
+			.titleBox {
+				justify-content: flex-start;
+				width: 100%;
+				img {
+					margin: 0 5px;
+				}
+				span {
+					margin: 0 auto 0 10px;
+					color: #333;
+				}
+				i {
+					color: #666;
+				}
+			}
+			.contentBox {
+				margin-top: 20px;
+				.funBtn {
+					font-size: 14px;
+					img {
+						margin-bottom: 10px;
+					}
+				}
+			}
+		}
+		// 底部 end
+	}
+	// 办事大厅 主体-首页 面板-概况信息 end
+	// 办事大厅 主体-首页 面板-保险、劳动关系
+	.oHIOperation {
+		flex: 1;
+		justify-content: flex-start;
+		align-items: flex-start;
+		padding: 20px;
+		background-color: #fff;
+		box-shadow: 0 1px 3px #ccc;
+		.basicInfo {
+			justify-content: flex-start;
+			margin-bottom: 10px;
+			padding: 10px 0 10px 20px;
+			width: 100%;
+			line-height: 2;
+			color: #666;
+			font-size: 20px;
+			font-weight: 500;
+			background-color: #cae1ff;
+		}
+		.funBox {
+			align-items: flex-start;
+			margin: 6px 0;
+			width: 100%;
+			.titleBox {
+				color: #1a1a1a;
+				font-size: 18px;
+			}
+			.subtitle {
+				margin: 10px 0 0 38px;
+				color: #333;
+				font-size: 14px;
+			}
+			.contentBox {
+				justify-content: space-between;
+				align-items: flex-start;
+				padding: 10px 0 10px 38px;
+				width: 100%;
+				.column {
+					display: flex;
+					flex-flow: column nowrap;
+					align-items: flex-start;
+					min-width: 300px;
+					.funItem {
+						margin: 8px 0;
+						color: #333;
+						font-size: 14px;
+						span {
+							position: relative;
+							margin: 0 10px 0 20px;
+							&::before {
+								position: absolute;
+								top: 8px;
+								left: -18px;
+								width: 5px;
+								height: 5px;
+								content: '';
+								border-radius: 50%;
+							}
+							&.dot::before {
+								background-color: rgb(135, 196, 66);
+							}
+							&.dotII::before {
+								background-color: rgb(238, 153, 12);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	// 办事大厅 主体-首页 面板-保险、劳动关系 end
+	// 办事大厅 主体-信息查询 侧边栏
+	.sidebar {
+		margin-right: 10px;
+		width: 200px;
+		background-color: #fff;
+		box-shadow: 0 1px 3px #ccc;
+		// // element 滚动条
+		// .el-scrollbar {
+		// 	height: 100%;
+
+		// }
+		// // element 滚动条 end
+		overflow: auto;
+
+		// element 树形控件
+		.el-tree {
+			// 节点
+			> .el-tree-node {
+				display: inline-block;
+				min-width: 100%;
+			}
+			// 节点图片
+			.nodeImg {
+				margin-right: 10px;
+				width: 14px;
+				height: 14px;
+			}
+			// 节点文字
+			.nodeText {
+				color: #333;
+				font-size: 14px;
+			}
+			// 无子节点
+			.el-tree-node__expand-icon.is-leaf::before {
+				display: block;
+				width: 10px;
+				height: 10px;
+				content: '';
+				background-image: none;
+			}
+			// 有子节点 未展开
+			.el-icon-caret-right::before {
+				display: block;
+				width: 10px;
+				height: 10px;
+				content: '';
+				background: url(../assets/plus.png) center/16px no-repeat;
+			}
+			// 有子节点 已展开
+			.el-tree-node__expand-icon.expanded {
+				-webkit-transform: rotate(0deg);
+				transform: rotate(0deg);
+			}
+			.el-tree-node__expand-icon.expanded.el-icon-caret-right::before {
+				display: block;
+				width: 10px;
+				height: 10px;
+				content: '';
+				background: url(../assets/minus.png) center/16px no-repeat;
+			}
+		}
+		// element 树形控件 end
+	}
+	// 办事大厅 主体-信息查询 侧边栏 end
+	// 办事大厅 主体-信息查询 面板
+	.oHQPanel {
+		flex: 1;
+		width: calc(100% - 210px);
+		background-color: #fff;
+		box-shadow: 0 1px 3px #ccc;
+		.titleBox {
+			justify-content: flex-start;
+			padding: 10px 20px;
+			font-weight: 500;
+			background-color: #f6f6f6;
+		}
+		.contentBox {
+			padding: 20px 0;
+		}
+	}
+	// 办事大厅 主体-信息查询 面板 end
+}
+// 办事大厅 主体 end
