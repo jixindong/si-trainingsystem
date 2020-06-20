@@ -93,7 +93,11 @@ a {
 }
 // width
 .w90 {
-	width: 90%;
+	width: 90% !important;
+}
+// color
+.colorRed{
+	color: #F56C6C;
 }
 
 // 系统登录
@@ -224,7 +228,7 @@ a {
 				flex: 1;
 				justify-content: flex-start;
 				align-items: flex-start;
-				padding: 10px 20px;
+				padding: 10px 0 0 20px;
 				height: 200px;
 				background-color: #fff;
 				box-shadow: 0 1px 3px #ccc;
@@ -248,7 +252,7 @@ a {
 					.msgItem {
 						position: relative;
 						justify-content: space-between;
-						margin: 5px 0;
+						margin: 5px 5px 5px 0;
 						&::before {
 							position: absolute;
 							left: -16px;
@@ -380,16 +384,9 @@ a {
 	.sidebar {
 		margin-right: 10px;
 		width: 200px;
+		overflow: auto;
 		background-color: #fff;
 		box-shadow: 0 1px 3px #ccc;
-		// // element 滚动条
-		// .el-scrollbar {
-		// 	height: 100%;
-
-		// }
-		// // element 滚动条 end
-		overflow: auto;
-
 		// element 树形控件
 		.el-tree {
 			// 节点
@@ -444,11 +441,13 @@ a {
 	.oHQPanel {
 		flex: 1;
 		width: calc(100% - 210px);
+		font-size: 14px;
 		background-color: #fff;
 		box-shadow: 0 1px 3px #ccc;
 		.titleBox {
 			justify-content: flex-start;
 			padding: 10px 20px;
+			font-size: 16px;
 			font-weight: 500;
 			background-color: #f6f6f6;
 		}
