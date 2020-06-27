@@ -67,6 +67,7 @@ const store = new Vuex.Store({
 				contacts: '罗翔', //联系人
 				status: 'CEO', //个人身份
 				staffSort: '在岗人员', //职工类别
+				staffType: '单位负责人', //职业（工种）
 				employmentForm: '全日制', //用工形式
 				// 职工社保信息
 				siNum: '112233445566', //社保号
@@ -75,6 +76,7 @@ const store = new Vuex.Store({
 				insuredDate: '2020年6月10日', //投保日期
 				reInsuredNum: '0', //续订次数
 				insuredRecordDate: '2020年6月10日', //备案日期
+				employmentYear: '2010年', //参加工作年份
 				employmentDate: '2010年1月10日', //参加工作日期
 				recruitStartDate: '2020年6月10日', //用工起始日期
 				recruitEndDate: '', //用工终止日期
@@ -83,8 +85,8 @@ const store = new Vuex.Store({
 				laborContractType: '固定期限', //劳动合同期限类型
 				laborContractStartDate: '2020年5月1日', //劳动合同起始日期
 				laborContractEndDate: '2020年5月31日', //劳动合同终止日期
-				hireStartDate: '2020年6月10日', //使用起始日期
-				hireEndDate: '', //使用终止日期
+				hireStartDate: '2020年6月10日', //试用起始日期
+				hireEndDate: '', //试用终止日期
 				subEntNum: '666', //二级单位编号
 				subEntName: '问云教育', //二级单位名称
 				chargeBase: '3300', //缴费基数
@@ -283,7 +285,11 @@ const store = new Vuex.Store({
 				checkStatus: '已通过', //审核状态
 				checkMsg: '已通过', //审核说明
 				feedbackMsg: '审核完毕' //反馈信息
-			}]
+			}],
+			// 企业在职增员
+			entAddStaff: [],
+			// 企业在职减员
+			entMinusStaff: []
 		}
 	},
 	getters: {},
@@ -295,6 +301,34 @@ const store = new Vuex.Store({
 		// 修改企业发票邮寄地址信息
 		modifyEntIMA(state, me) {
 			state.entInfo.entInvoiceMailingAddr = me;
+		},
+		// 企业在职增员
+		entAddStaff(state, ea) {
+			state.entInfo.entAddStaff = ea;
+		},
+		// 企业在职减员
+		entMinusStaff(state, em) {
+			state.entInfo.entMinusStaff = em;
+		},
+		// 更新企业职工信息
+		updateEntStaffInfo(state, ue){
+			ue.forEach(e => {
+				if(e.addSICause){
+					state.entInfo.entStaffInfo.push(e);
+				}else{
+					state.entInfo.entStaffInfo.forEach((value,index) => {
+						if(value.IDNum == e.IDNum){
+							state.entInfo.entStaffInfo.splice(index,1);
+						}
+					});
+				}
+			});
+		},
+		// 更新企业人员增减情况
+		updateEntStaffChange(state, ue) {
+			ue.forEach(e => {
+				state.entInfo.entStaffChange.push(e);
+			});
 		}
 	},
 	actions: {
@@ -305,6 +339,22 @@ const store = new Vuex.Store({
 		// 修改企业发票邮寄地址信息
 		modifyEntIMA(context, me) {
 			context.commit('modifyEntIMA', me);
+		},
+		// 企业在职增员
+		entAddStaff(context, ea) {
+			context.commit('entAddStaff', ea);
+		},
+		// 企业在职减员
+		entMinusStaff(context, em) {
+			context.commit('entMinusStaff', em);
+		},
+		// 更新企业职工信息
+		updateEntStaffInfo(context, ue) {
+			context.commit('updateEntStaffInfo', ue);
+		},
+		// 更新企业人员增减情况
+		updateEntStaffChange(context, ue) {
+			context.commit('updateEntStaffChange', ue);
 		}
 	},
 	plugins: [persistedState({

@@ -95,6 +95,9 @@ a {
 .w90 {
 	width: 90% !important;
 }
+.w100{
+	width: 100% !important;
+}
 // color
 .colorRed{
 	color: #F56C6C;
@@ -376,6 +379,19 @@ a {
 						}
 					}
 				}
+			}
+		}
+		.dialogForm {
+			padding-right: 10px;
+			max-height: 500px;
+			overflow: hidden auto;
+			.dialogTitleBox {
+				justify-content: flex-start;
+				margin-bottom: 10px;
+				padding: 10px 20px;
+				font-size: 16px;
+				font-weight: 500;
+				background-color: #f6f6f6;
 			}
 		}
 	}
