@@ -721,6 +721,7 @@
 
 <script>
 import { mapState } from 'vuex';
+const utils = require('../../utils/utils.js');
 
 export default {
 	name: 'SIOfficeHallIndexLR',
@@ -1058,70 +1059,70 @@ export default {
 			handler(e) {
 				// 出生日期
 				if (e.birthdayTs) {
-					this.tRIDInfo.birthday = this.getDateString(e.birthdayTs);
+					this.tRIDInfo.birthday = utils.getDateString(e.birthdayTs);
 				} else {
 					this.tRIDInfo.birthday = '';
 				}
 
 				// 投保日期
 				if (e.insuredDateTs) {
-					this.tRIDInfo.insuredDate = this.getDateString(e.insuredDateTs);
+					this.tRIDInfo.insuredDate = utils.getDateString(e.insuredDateTs);
 				} else {
 					this.tRIDInfo.insuredDate = '';
 				}
 
 				// 备案日期
 				if (e.insuredRecordDateTs) {
-					this.tRIDInfo.insuredRecordDate = this.getDateString(e.insuredRecordDateTs);
+					this.tRIDInfo.insuredRecordDate = utils.getDateString(e.insuredRecordDateTs);
 				} else {
 					this.tRIDInfo.insuredRecordDate = '';
 				}
 
 				// 参加工作年份
 				if (e.employmentYearTs) {
-					this.tRIDInfo.employmentYear = this.getDateStringIII(e.employmentYearTs);
+					this.tRIDInfo.employmentYear = utils.getDateStringIII(e.employmentYearTs);
 				} else {
 					this.tRIDInfo.employmentYear = '';
 				}
 
 				// 用工起始日期
 				if (e.recruitStartDateTs) {
-					this.tRIDInfo.recruitStartDate = this.getDateString(e.recruitStartDateTs);
+					this.tRIDInfo.recruitStartDate = utils.getDateString(e.recruitStartDateTs);
 				} else {
 					this.tRIDInfo.recruitStartDate = '';
 				}
 
 				// 用工终止日期
 				if (e.recruitEndDateTs) {
-					this.tRIDInfo.recruitEndDate = this.getDateString(e.recruitEndDateTs);
+					this.tRIDInfo.recruitEndDate = utils.getDateString(e.recruitEndDateTs);
 				} else {
 					this.tRIDInfo.recruitEndDate = '';
 				}
 
 				// 劳动合同起始日期
 				if (e.laborContractStartDateTs) {
-					this.tRIDInfo.laborContractStartDate = this.getDateString(e.laborContractStartDateTs);
+					this.tRIDInfo.laborContractStartDate = utils.getDateString(e.laborContractStartDateTs);
 				} else {
 					this.tRIDInfo.laborContractStartDate = '';
 				}
 
 				// 劳动合同终止日期
 				if (e.laborContractEndDateTs) {
-					this.tRIDInfo.laborContractEndDate = this.getDateString(e.laborContractEndDateTs);
+					this.tRIDInfo.laborContractEndDate = utils.getDateString(e.laborContractEndDateTs);
 				} else {
 					this.tRIDInfo.laborContractEndDate = '';
 				}
 
 				// 试用起始日期
 				if (e.hireStartDateTs) {
-					this.tRIDInfo.hireStartDate = this.getDateString(e.hireStartDateTs);
+					this.tRIDInfo.hireStartDate = utils.getDateString(e.hireStartDateTs);
 				} else {
 					this.tRIDInfo.hireStartDate = '';
 				}
 
 				// 试用终止日期
 				if (e.hireEndDateTs) {
-					this.tRIDInfo.hireEndDate = this.getDateString(e.hireEndDateTs);
+					this.tRIDInfo.hireEndDate = utils.getDateString(e.hireEndDateTs);
 				} else {
 					this.tRIDInfo.hireEndDate = '';
 				}
@@ -1135,77 +1136,77 @@ export default {
 			handler(e) {
 				// 出生日期
 				if (e.birthdayTs) {
-					this.rRIRDInfo.birthday = this.getDateString(e.birthdayTs);
+					this.rRIRDInfo.birthday = utils.getDateString(e.birthdayTs);
 				} else {
 					this.rRIRDInfo.birthday = '';
 				}
 
 				// 投保日期
 				if (e.insuredDateTs) {
-					this.rRIRDInfo.insuredDate = this.getDateString(e.insuredDateTs);
+					this.rRIRDInfo.insuredDate = utils.getDateString(e.insuredDateTs);
 				} else {
 					this.rRIRDInfo.insuredDate = '';
 				}
 
 				// 备案日期
 				if (e.insuredRecordDateTs) {
-					this.rRIRDInfo.insuredRecordDate = this.getDateString(e.insuredRecordDateTs);
+					this.rRIRDInfo.insuredRecordDate = utils.getDateString(e.insuredRecordDateTs);
 				} else {
 					this.rRIRDInfo.insuredRecordDate = '';
 				}
 
 				// 参加工作年份
 				if (e.employmentYearTs) {
-					this.rRIRDInfo.employmentYear = this.getDateStringIII(e.employmentYearTs);
+					this.rRIRDInfo.employmentYear = utils.getDateStringIII(e.employmentYearTs);
 				} else {
 					this.rRIRDInfo.employmentYear = '';
 				}
 
 				// 用工起始日期
 				if (e.recruitStartDateTs) {
-					this.rRIRDInfo.recruitStartDate = this.getDateString(e.recruitStartDateTs);
+					this.rRIRDInfo.recruitStartDate = utils.getDateString(e.recruitStartDateTs);
 				} else {
 					this.rRIRDInfo.recruitStartDate = '';
 				}
 
 				// 用工终止日期
 				if (e.recruitEndDateTs) {
-					this.rRIRDInfo.recruitEndDate = this.getDateString(e.recruitEndDateTs);
+					this.rRIRDInfo.recruitEndDate = utils.getDateString(e.recruitEndDateTs);
 				} else {
 					this.rRIRDInfo.recruitEndDate = '';
 				}
 
 				// 劳动合同起始日期
 				if (e.laborContractStartDateTs) {
-					this.rRIRDInfo.laborContractStartDate = this.getDateString(e.laborContractStartDateTs);
+					this.rRIRDInfo.laborContractStartDate = utils.getDateString(e.laborContractStartDateTs);
 				} else {
 					this.rRIRDInfo.laborContractStartDate = '';
 				}
 
 				// 劳动合同终止日期
 				if (e.laborContractEndDateTs) {
-					this.rRIRDInfo.laborContractEndDate = this.getDateString(e.laborContractEndDateTs);
+					this.rRIRDInfo.laborContractEndDate = utils.getDateString(e.laborContractEndDateTs);
 				} else {
 					this.rRIRDInfo.laborContractEndDate = '';
 				}
 
 				// 合同解除日期
 				if (e.laborContractRelieveDateTs) {
-					this.rRIRDInfo.laborContractRelieveDate = this.getDateString(e.laborContractRelieveDateTs);
+					this.rRIRDInfo.laborContractRelieveDate = utils.getDateString(e.laborContractRelieveDateTs);
 				} else {
 					this.rRIRDInfo.laborContractRelieveDate = '';
 				}
 
 				// 试用起始日期
 				if (e.hireStartDateTs) {
-					this.rRIRDInfo.hireStartDate = this.getDateString(e.hireStartDateTs);
+					this.rRIRDInfo.hireStartDate = utils.getDateString(e.hireStartDateTs);
 				} else {
 					this.rRIRDInfo.hireStartDate = '';
 				}
 
 				// 试用终止日期
 				if (e.hireEndDateTs) {
-					this.rRIRDInfo.hireEndDate = this.getDateString(e.hireEndDateTs);
+					this.rRIRDInfo.hireEndDate = utils.getDateString(e.hireEndDateTs);
 				} else {
 					this.rRIRDInfo.hireEndDate = '';
 				}
@@ -1215,42 +1216,6 @@ export default {
 	},
 	methods: {
 		// ======================== 公共 ========================
-		// 深拷贝
-		deepClone(target) {
-			let result;
-
-			if (typeof target === 'object') {
-				if (Array.isArray(target)) {
-					result = [];
-					for (let i in target) {
-						result.push(this.deepClone(target[i]));
-					}
-				} else if (target === null) {
-					result = null;
-				} else if (target.constructor === RegExp) {
-					result = target;
-				} else {
-					result = {};
-					for (let i in target) {
-						result[i] = this.deepClone(target[i]);
-					}
-				}
-			} else {
-				result = target;
-			}
-			return result;
-		},
-
-		// ------------ 日期 ------------
-		getDateString(timestamp) {
-			let date = new Date(timestamp);
-			return date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日';
-		},
-		getDateStringIII(timestamp) {
-			let date = new Date(timestamp);
-			return date.getFullYear() + '年';
-		},
-
 		// ------------ 未开放功能按钮 ------------
 		unopenFunction() {
 			this.$message.info('此功能暂未开放');
@@ -1293,7 +1258,7 @@ export default {
 		tRIDSave() {
 			this.$refs.tRIDFormRef.validate(valid => {
 				if (valid) {
-					this.tRRDIDInfo.push(this.deepClone(this.tRIDInfo));
+					this.tRRDIDInfo.push(utils.deepClone(this.tRIDInfo));
 					this.tRIDV = false;
 					this.$refs.tRIDFormRef.resetFields();
 					this.$message.success('保存成功');
@@ -1346,7 +1311,7 @@ export default {
 		rRIRDSave() {
 			this.$refs.rRIRDFormRef.validate(valid => {
 				if (valid) {
-					this.tRRIMDIDInfo.push(this.deepClone(this.rRIRDInfo));
+					this.tRRIMDIDInfo.push(utils.deepClone(this.rRIRDInfo));
 					this.rRIRDV = false;
 					this.$refs.rRIRDFormRef.resetFields();
 					this.$message.success('保存成功');

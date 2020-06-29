@@ -591,6 +591,7 @@
 
 <script>
 import { mapState } from 'vuex';
+const utils = require('../../utils/utils.js');
 
 export default {
 	name: 'SIOfficeHallIndexSI',
@@ -988,38 +989,38 @@ export default {
 			handler(e) {
 				// 出生日期
 				if (e.birthdayTs) {
-					this.sADInfo.birthday = this.getDateString(e.birthdayTs);
+					this.sADInfo.birthday = utils.getDateString(e.birthdayTs);
 				} else {
 					this.sADInfo.birthday = '';
 				}
 
 				// 增员年月
 				if (e.addStaffDateTs) {
-					this.sADInfo.addStaffDate = this.getDateStringII(e.addStaffDateTs);
+					this.sADInfo.addStaffDate = utils.getDateStringII(e.addStaffDateTs);
 				} else {
 					this.sADInfo.addStaffDate = '';
 				}
 
 				// 参加工作日期
 				if (e.employmentDateTs) {
-					this.sADInfo.employmentDate = this.getDateString(e.employmentDateTs);
+					this.sADInfo.employmentDate = utils.getDateString(e.employmentDateTs);
 				} else {
 					this.sADInfo.employmentDate = '';
 				}
 
 				// 职工缴费情况
 				if (e.staffChargeStatus[0].startDateTs) {
-					this.sADInfo.staffChargeStatus[0].startDate = this.getDateString(e.staffChargeStatus[0].startDateTs);
+					this.sADInfo.staffChargeStatus[0].startDate = utils.getDateString(e.staffChargeStatus[0].startDateTs);
 				} else {
 					this.sADInfo.staffChargeStatus[0].startDate = '';
 				}
 				if (e.staffChargeStatus[1].startDateTs) {
-					this.sADInfo.staffChargeStatus[1].startDate = this.getDateString(e.staffChargeStatus[0].startDateTs);
+					this.sADInfo.staffChargeStatus[1].startDate = utils.getDateString(e.staffChargeStatus[0].startDateTs);
 				} else {
 					this.sADInfo.staffChargeStatus[1].startDate = '';
 				}
 				if (e.staffChargeStatus[2].startDateTs) {
-					this.sADInfo.staffChargeStatus[2].startDate = this.getDateString(e.staffChargeStatus[0].startDateTs);
+					this.sADInfo.staffChargeStatus[2].startDate = utils.getDateString(e.staffChargeStatus[0].startDateTs);
 				} else {
 					this.sADInfo.staffChargeStatus[2].startDate = '';
 				}
@@ -1033,21 +1034,21 @@ export default {
 			handler(e) {
 				// 出生日期
 				if (e.birthdayTs) {
-					this.mSDInfo.birthday = this.getDateString(e.birthdayTs);
+					this.mSDInfo.birthday = utils.getDateString(e.birthdayTs);
 				} else {
 					this.mSDInfo.birthday = '';
 				}
 
 				// 减员年月
 				if (e.minusStaffDateTs) {
-					this.mSDInfo.minusStaffDate = this.getDateStringII(e.minusStaffDateTs);
+					this.mSDInfo.minusStaffDate = utils.getDateStringII(e.minusStaffDateTs);
 				} else {
 					this.mSDInfo.minusStaffDate = '';
 				}
 
 				// 合同解除日期
 				if (e.laborContractRelieveDateTs) {
-					this.mSDInfo.laborContractRelieveDate = this.getDateString(e.laborContractRelieveDateTs);
+					this.mSDInfo.laborContractRelieveDate = utils.getDateString(e.laborContractRelieveDateTs);
 				} else {
 					this.mSDInfo.laborContractRelieveDate = '';
 				}
@@ -1057,47 +1058,6 @@ export default {
 	},
 	methods: {
 		// ======================== 公共 ========================
-		// 深拷贝
-		deepClone(target) {
-			let result;
-
-			if (typeof target === 'object') {
-				if (Array.isArray(target)) {
-					result = [];
-					for (let i in target) {
-						result.push(this.deepClone(target[i]));
-					}
-				} else if (target === null) {
-					result = null;
-				} else if (target.constructor === RegExp) {
-					result = target;
-				} else {
-					result = {};
-					for (let i in target) {
-						result[i] = this.deepClone(target[i]);
-					}
-				}
-			} else {
-				result = target;
-			}
-			return result;
-		},
-
-		// ------------ 日期 ------------
-		getDateString(timestamp) {
-			let date = new Date(timestamp);
-			return date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日';
-		},
-		getDateStringII(timestamp) {
-			let date = new Date(timestamp);
-			return date.getFullYear() + '年' + (date.getMonth() + 1) + '月';
-		},
-		// 获取当前日期
-		getCurrentTime() {
-			let date = new Date();
-			this.currentTime = date.getFullYear() + '年' + (parseInt(date.getMonth()) + 1) + '月' + date.getDate() + '日';
-		},
-
 		// ------------ 未开放功能按钮 ------------
 		unopenFunction() {
 			this.$message.info('此功能暂未开放');
@@ -1145,7 +1105,7 @@ export default {
 
 				this.entInfo.entAddStaff.forEach(e => {
 					if (e.IDNum == this.sADInfo.IDNum) {
-						this.sADInfo = this.deepClone(e);
+						this.sADInfo = utils.deepClone(e);
 						this.sADIsQuery = true;
 						isQueried = true;
 					}
@@ -1166,7 +1126,7 @@ export default {
 		sADSave() {
 			this.$refs.sADFormRef.validate(valid => {
 				if (valid) {
-					this.tASDIDInfo.push(this.deepClone(this.sADInfo));
+					this.tASDIDInfo.push(utils.deepClone(this.sADInfo));
 					this.sADV = false;
 					this.$refs.sADFormRef.resetFields();
 					this.$message.success('保存成功');
@@ -1228,7 +1188,7 @@ export default {
 
 				this.entInfo.entMinusStaff.forEach(e => {
 					if (e.siNum == this.mSDInfo.siNum) {
-						this.mSDInfo = this.deepClone(e);
+						this.mSDInfo = utils.deepClone(e);
 						this.mSDIsQuery = true;
 						isQueried = true;
 					}
@@ -1245,7 +1205,7 @@ export default {
 		mSDSave() {
 			this.$refs.mSDFormRef.validate(valid => {
 				if (valid) {
-					this.tMSDIDInfo.push(this.deepClone(this.mSDInfo));
+					this.tMSDIDInfo.push(utils.deepClone(this.mSDInfo));
 					this.mSDV = false;
 					this.$refs.mSDFormRef.resetFields();
 					this.$message.success('保存成功');
@@ -1310,7 +1270,7 @@ export default {
 	},
 	mounted() {
 		// 获取当前日期
-		this.getCurrentTime();
+		this.currentTime = utils.getCurrentTime();
 	}
 };
 </script>
