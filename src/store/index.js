@@ -101,7 +101,11 @@ const store = new Vuex.Store({
 					staffChargeBase: '300.00', //个人缴费基数
 					chargeDate: '1998年1月10日', //发生日期
 					chargeCause: '单位应缴缴费' //发生原因
-				}]
+				}],
+				// 职工工资情况
+				yesteryearWageSum: '', //上年度工资
+				yesteryearActualMonth: '', //上年实发月数
+				yesteryearMonthWage: '' //上年月工资
 			}],
 			// 企业人员增减情况
 			entStaffChange: [{
@@ -290,6 +294,186 @@ const store = new Vuex.Store({
 			entAddStaff: [],
 			// 企业在职减员
 			entMinusStaff: []
+		},
+		// 公共选项
+		commonOptions: {
+			// 民族
+			nation: [
+				'汉族',
+				'蒙古族',
+				'回族',
+				'藏族',
+				'维吾尔族',
+				'苗族',
+				'彝族',
+				'壮族',
+				'布依族',
+				'朝鲜族',
+				'满族',
+				'侗族',
+				'瑶族',
+				'白族',
+				'土家族',
+				'哈尼族',
+				'哈萨克族',
+				'傣族',
+				'黎族',
+				'傈僳族',
+				'佤族',
+				'畲族',
+				'高山族',
+				'拉祜族',
+				'水族',
+				'东乡族',
+				'纳西族',
+				'景颇族',
+				'柯尔克孜族',
+				'土族',
+				'达斡尔族',
+				'仫佬族',
+				'羌族',
+				'布朗族',
+				'撒拉族',
+				'毛南族',
+				'仡佬族',
+				'锡伯族',
+				'阿昌族',
+				'普米族',
+				'塔吉克族',
+				'怒族',
+				'乌兹别克族',
+				'俄罗斯族',
+				'鄂温克族',
+				'德昂族',
+				'保安族',
+				'裕固族',
+				'京族',
+				'塔塔尔族',
+				'独龙族',
+				'鄂伦春族',
+				'赫哲族',
+				'门巴族',
+				'珞巴族',
+				'基诺族',
+				'外籍人士',
+				'其他'
+			],
+			// 户口性质
+			householdType: [
+				'非农业户口(城镇)',
+				'本地非农业户口(本地城镇)',
+				'外地非农业户口(外地城镇)',
+				'农业户口(农村)',
+				'本地农业户口(本地农村)',
+				'外地农业户口(外地农村)',
+				'台港澳人员',
+				'外籍人士'
+			],
+			// 文化程度
+			educationDegree: [
+				'不限',
+				'博士',
+				'硕士研究生',
+				'大学本科',
+				'大专以上',
+				'大学专科',
+				'中专以上',
+				'中专中技',
+				'职专',
+				'技工学校',
+				'普通高中',
+				'职业高中',
+				'初级中学',
+				'小学',
+				'文盲或半文盲',
+				'其他'
+			],
+			// 职工类别
+			staffSort: [
+				'在岗人员',
+				'本单位内退人员',
+				'劳务派遣人员',
+				'离退休返聘人员',
+				'在校学生',
+				'其他'
+			],
+			// 职业(工种)
+			staffType: [
+				'单位负责人',
+				'企业管理员',
+				'专业、技术人员',
+				'科研人员',
+				'工程技术人员',
+				'农业技术人员',
+				'飞机船舶技术人员',
+				'卫生专业技术人员',
+				'经济业务人员',
+				'金融业务人员',
+				'法律专业人员',
+				'教学人员',
+				'文学艺术工作者',
+				'体育工作者',
+				'新闻出版社文化工作者',
+				'办事人员',
+				'行政办公人员',
+				'安全保卫和消防人员',
+				'邮政电信业务人员',
+				'商业、服务业人员',
+				'购销人员',
+				'仓储人员',
+				'餐饮服务人员',
+				'饭店、旅游娱乐服务人员',
+				'运输服务人员',
+				'医疗卫生辅助服务人员',
+				'社会服务人员',
+				'农林牧渔水利生产人员',
+				'种植业生产人员',
+				'林业及动植物保护人员',
+				'畜牧业生产人员',
+				'渔业生产人员',
+				'水利设施管理养护人员',
+				'农林机械操作和能源开发人员',
+				'生产运输工人',
+				'勘测及矿物开采工人',
+				'金属冶炼轧制工',
+				'化工产品生产工',
+				'机械制造加工工',
+				'机电产品装配工',
+				'机械设备修理工',
+				'电力设备装运检修工',
+				'电子元器件制造装调工',
+				'橡胶塑料制品生产工',
+				'纺织针织印染工',
+				'裁剪缝纫毛皮革制作工',
+				'粮油食品饮料生产工',
+				'烟草制品加工工',
+				'药品生产制造工',
+				'木材人造板生产制作工',
+				'制浆造纸纸制品生产工',
+				'建筑材料生产加工工',
+				'玻璃陶瓷搪瓷生产工',
+				'广播影视品制作播放人员',
+				'制版印刷人员',
+				'工艺、美术品制作人员',
+				'文体用品乐器制作人员',
+				'建筑和工程施工人员',
+				'驾驶员和运输工人',
+				'环境监测废物处理人员',
+				'检验、计量人员',
+				'体力工人',
+				'其他'
+			],
+			// 用工形式
+			employmentForm: [
+				'全日制',
+				'非全日制'
+			],
+			// 劳动合同期限类型
+			laborContractType: [
+				'固定期限',
+				'无固定期限',
+				'以完成一定任务为期限'
+			]
 		}
 	},
 	getters: {},
@@ -298,37 +482,53 @@ const store = new Vuex.Store({
 		modifyPassword(state, mp) {
 			state.entInfo.entAccount.password = mp;
 		},
-		// 修改企业发票邮寄地址信息
-		modifyEntIMA(state, me) {
-			state.entInfo.entInvoiceMailingAddr = me;
-		},
-		// 企业在职增员
-		entAddStaff(state, ea) {
-			state.entInfo.entAddStaff = ea;
-		},
-		// 企业在职减员
-		entMinusStaff(state, em) {
-			state.entInfo.entMinusStaff = em;
-		},
 		// 更新企业职工信息
-		updateEntStaffInfo(state, ue){
-			ue.forEach(e => {
-				if(e.addSICause){
+		updateEntStaffInfo(state, us) {
+			us.forEach(e => {
+				if (e.addSICause) {
 					state.entInfo.entStaffInfo.push(e);
-				}else{
-					state.entInfo.entStaffInfo.forEach((value,index) => {
-						if(value.IDNum == e.IDNum){
-							state.entInfo.entStaffInfo.splice(index,1);
+				} else {
+					state.entInfo.entStaffInfo.forEach((value, index) => {
+						if (value.IDNum == e.IDNum) {
+							state.entInfo.entStaffInfo.splice(index, 1);
 						}
 					});
 				}
 			});
 		},
+		// 更新企业职工工资情况
+		updateEntStaffWageStatus(state, sw) {
+			sw.forEach(e => {
+				state.entInfo.entStaffInfo.forEach((value, index) => {
+					if (value.IDNum == e.IDNum) {
+						state.entInfo.entStaffInfo[index] = e;
+					}
+				});
+			});
+		},
 		// 更新企业人员增减情况
-		updateEntStaffChange(state, ue) {
-			ue.forEach(e => {
+		updateEntStaffChange(state, sc) {
+			sc.forEach(e => {
 				state.entInfo.entStaffChange.push(e);
 			});
+		},
+		// 企业缴费情况
+		entChargeStatus(state, cs) {
+			cs.forEach(e => {
+				state.entInfo.entChargeStatus.push(e);
+			});
+		},
+		// 修改企业发票邮寄地址信息
+		modifyEntIMA(state, ia) {
+			state.entInfo.entInvoiceMailingAddr = ia;
+		},
+		// 企业在职增员
+		entAddStaff(state, as) {
+			state.entInfo.entAddStaff = as;
+		},
+		// 企业在职减员
+		entMinusStaff(state, ms) {
+			state.entInfo.entMinusStaff = ms;
 		}
 	},
 	actions: {
@@ -336,25 +536,33 @@ const store = new Vuex.Store({
 		modifyPassword(context, mp) {
 			context.commit('modifyPassword', mp);
 		},
-		// 修改企业发票邮寄地址信息
-		modifyEntIMA(context, me) {
-			context.commit('modifyEntIMA', me);
-		},
-		// 企业在职增员
-		entAddStaff(context, ea) {
-			context.commit('entAddStaff', ea);
-		},
-		// 企业在职减员
-		entMinusStaff(context, em) {
-			context.commit('entMinusStaff', em);
-		},
 		// 更新企业职工信息
-		updateEntStaffInfo(context, ue) {
-			context.commit('updateEntStaffInfo', ue);
+		updateEntStaffInfo(context, us) {
+			context.commit('updateEntStaffInfo', us);
+		},
+		// 更新企业职工工资情况
+		updateEntStaffWageStatus(context, sw) {
+			context.commit('updateEntStaffWageStatus', sw);
 		},
 		// 更新企业人员增减情况
-		updateEntStaffChange(context, ue) {
-			context.commit('updateEntStaffChange', ue);
+		updateEntStaffChange(context, sc) {
+			context.commit('updateEntStaffChange', sc);
+		},
+		// 企业缴费情况
+		entChargeStatus(context, cs) {
+			context.commit('entChargeStatus', cs);
+		},
+		// 修改企业发票邮寄地址信息
+		modifyEntIMA(context, ia) {
+			context.commit('modifyEntIMA', ia);
+		},
+		// 企业在职增员
+		entAddStaff(context, as) {
+			context.commit('entAddStaff', as);
+		},
+		// 企业在职减员
+		entMinusStaff(context, ms) {
+			context.commit('entMinusStaff', ms);
 		}
 	},
 	plugins: [persistedState({

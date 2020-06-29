@@ -24,7 +24,7 @@
 			<div class="contentBox fRow">
 				<div class="column">
 					<div class="funItem fRow">
-						<span class="dot hover" @click="tASDIDShow">在职增员</span>
+						<span class="colorBlack dot hover" @click="tASDIDShow">在职增员</span>
 						<img class="hover" src="../../assets/function.png" />
 					</div>
 					<div class="funItem fRow">
@@ -51,7 +51,7 @@
 
 				<div class="column">
 					<div class="funItem fRow">
-						<span class="dot hover" @click="tMSDIDShow">在职减员</span>
+						<span class="colorBlack dot hover" @click="tMSDIDShow">在职减员</span>
 						<img class="hover" src="../../assets/function.png" />
 					</div>
 					<div class="funItem fRow">
@@ -78,7 +78,7 @@
 
 				<div class="column">
 					<div class="funItem fRow">
-						<span class="dot">缴费基数申报</span>
+						<span class="colorBlack dot hover" @click="tCBDDShow">缴费基数申报</span>
 						<img class="hover" src="../../assets/function.png" />
 					</div>
 					<div class="funItem fRow">
@@ -221,13 +221,28 @@
 
 				<el-row :gutter="20">
 					<el-col :span="8">
-						<el-form-item prop="nation" label="民族"><el-input v-model="sADInfo.nation" :disabled="!sADIsQuery"></el-input></el-form-item>
+						<el-form-item prop="nation" label="民族">
+							<el-select v-model="sADInfo.nation" clearable :disabled="!sADIsQuery">
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.nation" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="employmentForm" label="用工形式"><el-input v-model="sADInfo.employmentForm" :disabled="!sADIsQuery"></el-input></el-form-item>
+						<el-form-item prop="employmentForm" label="用工形式">
+							<el-select v-model="sADInfo.employmentForm" clearable :disabled="!sADIsQuery">
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.employmentForm" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="educationDegree" label="文化程度"><el-input v-model="sADInfo.educationDegree" :disabled="!sADIsQuery"></el-input></el-form-item>
+						<el-form-item prop="educationDegree" label="文化程度">
+							<el-select v-model="sADInfo.educationDegree" clearable :disabled="!sADIsQuery">
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.educationDegree" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
 					</el-col>
 				</el-row>
 
@@ -236,7 +251,12 @@
 						<el-form-item prop="educationMajor" label="所学专业"><el-input v-model="sADInfo.educationMajor" :disabled="!sADIsQuery"></el-input></el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="householdType" label="户口性质"><el-input v-model="sADInfo.householdType" :disabled="!sADIsQuery"></el-input></el-form-item>
+						<el-form-item prop="householdType" label="户口性质">
+							<el-select v-model="sADInfo.householdType" clearable :disabled="!sADIsQuery">
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.householdType" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="postalCode" label="邮政编码"><el-input v-model="sADInfo.postalCode" :disabled="!sADIsQuery"></el-input></el-form-item>
@@ -266,7 +286,9 @@
 
 				<el-row :gutter="20">
 					<el-col :span="8">
-						<el-form-item prop="administrativeDivision" label="行政区划"><el-input v-model="sADInfo.administrativeDivision" :disabled="!sADIsQuery"></el-input></el-form-item>
+						<el-form-item prop="administrativeDivision" label="行政区划">
+							<el-input v-model="sADInfo.administrativeDivision" :disabled="!sADIsQuery"></el-input>
+						</el-form-item>
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="staffType" label="专业技术职务级别"><el-input v-model="sADInfo.staffType" :disabled="!sADIsQuery"></el-input></el-form-item>
@@ -323,7 +345,14 @@
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="addStaffDateTs" label="增员年月">
-							<el-date-picker class="w100" v-model="sADInfo.addStaffDateTs" type="month" value-format="timestamp" placeholder="选择年月" :disabled="!sADIsQuery"></el-date-picker>
+							<el-date-picker
+								class="w100"
+								v-model="sADInfo.addStaffDateTs"
+								type="month"
+								value-format="timestamp"
+								placeholder="选择年月"
+								:disabled="!sADIsQuery"
+							></el-date-picker>
 						</el-form-item>
 					</el-col>
 					<el-col :span="8">
@@ -334,7 +363,14 @@
 				<el-row :gutter="20">
 					<el-col :span="8">
 						<el-form-item prop="employmentDateTs" label="参加工作日期">
-							<el-date-picker class="w100" v-model="sADInfo.employmentDateTs" type="date" value-format="timestamp" placeholder="选择日期" :disabled="!sADIsQuery"></el-date-picker>
+							<el-date-picker
+								class="w100"
+								v-model="sADInfo.employmentDateTs"
+								type="date"
+								value-format="timestamp"
+								placeholder="选择日期"
+								:disabled="!sADIsQuery"
+							></el-date-picker>
 						</el-form-item>
 					</el-col>
 					<el-col :span="8">
@@ -421,7 +457,9 @@
 				<el-row :gutter="20">
 					<el-col :span="8">
 						<el-form-item prop="siNum" label="社会保障号码">
-							<el-input v-model="mSDInfo.siNum" :disabled="mSDIsQuery"><el-button slot="append" icon="el-icon-search" :disabled="mSDIsQuery" @click="mSDQuery"></el-button></el-input>
+							<el-input v-model="mSDInfo.siNum" :disabled="mSDIsQuery">
+								<el-button slot="append" icon="el-icon-search" :disabled="mSDIsQuery" @click="mSDQuery"></el-button>
+							</el-input>
 						</el-form-item>
 					</el-col>
 					<el-col :span="8">
@@ -434,7 +472,12 @@
 
 				<el-row :gutter="20">
 					<el-col :span="8">
-						<el-form-item prop="employmentForm" label="用工形式"><el-input v-model="mSDInfo.employmentForm" :disabled="!mSDIsQuery"></el-input></el-form-item>
+						<el-form-item prop="employmentForm" label="用工形式">
+							<el-select v-model="mSDInfo.employmentForm" clearable :disabled="!mSDIsQuery">
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.employmentForm" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="sex" label="性别"><el-input v-model="mSDInfo.sex" disabled></el-input></el-form-item>
@@ -455,7 +498,14 @@
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="minusStaffDateTs" label="减员年月">
-							<el-date-picker class="w100" v-model="mSDInfo.minusStaffDateTs" type="month" value-format="timestamp" placeholder="选择日期" :disabled="!mSDIsQuery"></el-date-picker>
+							<el-date-picker
+								class="w100"
+								v-model="mSDInfo.minusStaffDateTs"
+								type="month"
+								value-format="timestamp"
+								placeholder="选择日期"
+								:disabled="!mSDIsQuery"
+							></el-date-picker>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -465,11 +515,20 @@
 						<el-form-item prop="minusStaffCause" label="减员原因"><el-input v-model="mSDInfo.minusStaffCause" :disabled="!mSDIsQuery"></el-input></el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="laborContractRelieveCause" label="合同解除原因"><el-input v-model="mSDInfo.laborContractRelieveCause" :disabled="!mSDIsQuery"></el-input></el-form-item>
+						<el-form-item prop="laborContractRelieveCause" label="合同解除原因">
+							<el-input v-model="mSDInfo.laborContractRelieveCause" :disabled="!mSDIsQuery"></el-input>
+						</el-form-item>
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="laborContractRelieveDateTs" label="合同解除日期">
-							<el-date-picker class="w100" v-model="mSDInfo.laborContractRelieveDateTs" type="date" value-format="timestamp" placeholder="选择日期" :disabled="!mSDIsQuery"></el-date-picker>
+							<el-date-picker
+								class="w100"
+								v-model="mSDInfo.laborContractRelieveDateTs"
+								type="date"
+								value-format="timestamp"
+								placeholder="选择日期"
+								:disabled="!mSDIsQuery"
+							></el-date-picker>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -482,6 +541,51 @@
 		</el-dialog>
 		<!-- 职工减员对话框 end -->
 		<!-- ======================== 在职减员 end ======================== -->
+
+		<!-- ======================== 缴费基数申报 ======================== -->
+		<el-dialog title="录入缴费基数申报" :visible.sync="tCBDDV" :before-close="tCBDDClose">
+			<el-form label-width="100px" size="mini">
+				<div>
+					<el-table :data="tCBDDInfo" max-height="300px" stripe border>
+						<el-table-column type="index" label="No." fixed></el-table-column>
+						<el-table-column prop="siNum" label="社保号" show-overflow-tooltip></el-table-column>
+						<el-table-column prop="name" label="姓名" show-overflow-tooltip></el-table-column>
+						<el-table-column prop="IDNum" label="证件号码" show-overflow-tooltip></el-table-column>
+						<el-table-column prop="sex" label="性别" show-overflow-tooltip></el-table-column>
+						<el-table-column prop="subEntName" label="二级单位名称" show-overflow-tooltip></el-table-column>
+						<el-table-column label="上年度工资收入">
+							<template slot-scope="scope">
+								<el-input v-model="scope.row.yesteryearWageSum"></el-input>
+							</template>
+						</el-table-column>
+						<el-table-column label="上年实发月数">
+							<template slot-scope="scope">
+								<el-input v-model="scope.row.yesteryearActualMonth"></el-input>
+							</template>
+						</el-table-column>
+						<el-table-column prop="yesteryearMonthWage" label="上年月工资" show-overflow-tooltip></el-table-column>
+						<el-table-column prop="chargeBase" label="缴费基数" show-overflow-tooltip></el-table-column>
+					</el-table>
+				</div>
+
+				<el-row class="mgT20">
+					<el-col :span="12">
+						<el-form-item label="查找职工">
+							<el-input placeholder="请输入职工社保号码" v-model="tCBDDTSiNum">
+								<el-button slot="append" icon="el-icon-search" @click="tCBDDQuery"></el-button>
+							</el-input>
+						</el-form-item>
+					</el-col>
+				</el-row>
+
+				<el-row type="flex" justify="end">
+					<el-button size="mini" @click="tCBDDSave">保存</el-button>
+					<el-button size="mini" @click="unopenFunction">申报提交</el-button>
+					<el-button size="mini" @click="unopenFunction">申报作废</el-button>
+				</el-row>
+			</el-form>
+		</el-dialog>
+		<!-- ======================== 缴费基数申报 end ======================== -->
 	</div>
 </template>
 
@@ -493,8 +597,8 @@ export default {
 	data() {
 		return {
 			// ======================== 公共 ========================
-			currentTime: '',//当前日期
-			
+			currentTime: '', //当前日期
+
 			// ======================== 在职增员 ========================
 			// ------------ 录入增员申报信息对话框 ------------
 			tASDIDV: false, //是否显示
@@ -502,7 +606,7 @@ export default {
 
 			// ------------ 人员新增对话框 ------------
 			sADV: false, //是否显示
-			sADIsQuery:false,//是否查询
+			sADIsQuery: false, //是否查询
 			sADInfo: {
 				IDNum: '', //证件号码
 				name: '', //姓名
@@ -612,22 +716,22 @@ export default {
 				nation: [
 					{
 						required: true,
-						message: '请输入民族',
-						trigger: 'blur'
+						message: '请选择民族',
+						trigger: 'change'
 					}
 				],
 				employmentForm: [
 					{
 						required: true,
-						message: '请输入用工形式',
-						trigger: 'blur'
+						message: '请选择用工形式',
+						trigger: 'change'
 					}
 				],
 				educationDegree: [
 					{
 						required: true,
-						message: '请输入文化程度',
-						trigger: 'blur'
+						message: '请选择文化程度',
+						trigger: 'change'
 					}
 				],
 				educationMajor: [
@@ -640,8 +744,8 @@ export default {
 				householdType: [
 					{
 						required: true,
-						message: '请输入户口性质',
-						trigger: 'blur'
+						message: '请选择户口性质',
+						trigger: 'change'
 					}
 				],
 				postalCode: [
@@ -801,7 +905,7 @@ export default {
 
 			// ------------ 职工减员对话框 ------------
 			mSDV: false, //是否显示
-			mSDIsQuery:false,//是否查询
+			mSDIsQuery: false, //是否查询
 			mSDInfo: {
 				IDNum: '', //证件号码
 				name: '', //姓名
@@ -817,7 +921,7 @@ export default {
 				minusStaffDateTs: '',
 				laborContractRelieveDate: '', //合同解除日期
 				laborContractRelieveDateTs: '',
-				laborContractRelieveCause: ''//合同解除原因
+				laborContractRelieveCause: '' //合同解除原因
 			}, //信息
 			mSDFormRules: {
 				IDNum: [
@@ -862,12 +966,19 @@ export default {
 						trigger: 'blur'
 					}
 				]
-			} //表单验证规则
+			}, //表单验证规则
+
+			// ======================== 缴费基数申报 ========================
+			// ------------ 录入缴费基数申报对话框 ------------
+			tCBDDV: false, //是否显示
+			tCBDDInfo: [], //信息
+			tCBDDTSiNum: '' //输入职工社保号码
 		};
 	},
 	computed: {
 		...mapState({
-			entInfo: state => state.entInfo //企业信息
+			entInfo: state => state.entInfo, //企业信息
+			commonOptions: state => state.commonOptions //公共选项
 		})
 	},
 	watch: {
@@ -999,10 +1110,10 @@ export default {
 			this.tASDIDV = true;
 		},
 		// 申报提交按钮
-		tASDIDDeclareSubmit(){
-			if(this.tASDIDInfo.length == 0){
+		tASDIDDeclareSubmit() {
+			if (this.tASDIDInfo.length == 0) {
 				this.$message.warning('没有录入人员信息，不能提交中心审批');
-			}else{
+			} else {
 				this.tASDIDInfo.forEach(e => {
 					e.num = e.IDNum;
 					e.changeCause = e.addSICause;
@@ -1010,8 +1121,8 @@ export default {
 					e.handleDate = this.currentTime;
 				});
 				this.tASDIDV = false;
-				this.$store.dispatch('updateEntStaffInfo',this.tASDIDInfo);
-				this.$store.dispatch('updateEntStaffChange',this.tASDIDInfo);
+				this.$store.dispatch('updateEntStaffInfo', this.tASDIDInfo);
+				this.$store.dispatch('updateEntStaffChange', this.tASDIDInfo);
 				this.$message.success('提交成功');
 			}
 		},
@@ -1022,7 +1133,7 @@ export default {
 
 		// ------------ 人员新增对话框 ------------
 		// 显示
-		sADShow(){
+		sADShow() {
 			this.sADV = true;
 		},
 		// 查询按钮
@@ -1031,18 +1142,18 @@ export default {
 				this.$message.warning('请输入证件号码');
 			} else {
 				let isQueried = false;
-				
+
 				this.entInfo.entAddStaff.forEach(e => {
-					if(e.IDNum == this.sADInfo.IDNum){
+					if (e.IDNum == this.sADInfo.IDNum) {
 						this.sADInfo = this.deepClone(e);
 						this.sADIsQuery = true;
 						isQueried = true;
 					}
 				});
-				
-				if(!isQueried){
+
+				if (!isQueried) {
 					this.$message.warning('未查询到相关数据');
-				}else{
+				} else {
 					this.$message.success('查询成功');
 				}
 			}
@@ -1082,10 +1193,10 @@ export default {
 			this.tMSDIDV = true;
 		},
 		// 申报提交按钮
-		tMSDIDDeclareSubmit(){
-			if(this.tMSDIDInfo.length == 0){
+		tMSDIDDeclareSubmit() {
+			if (this.tMSDIDInfo.length == 0) {
 				this.$message.warning('没有录入人员信息，不能提交中心审批');
-			}else{
+			} else {
 				this.tMSDIDInfo.forEach(e => {
 					e.num = e.IDNum;
 					e.changeCause = e.minusStaffCause;
@@ -1093,8 +1204,8 @@ export default {
 					e.handleDate = this.currentTime;
 				});
 				this.tMSDIDV = false;
-				this.$store.dispatch('updateEntStaffInfo',this.tMSDIDInfo);
-				this.$store.dispatch('updateEntStaffChange',this.tMSDIDInfo);
+				this.$store.dispatch('updateEntStaffInfo', this.tMSDIDInfo);
+				this.$store.dispatch('updateEntStaffChange', this.tMSDIDInfo);
 				this.$message.success('提交成功');
 			}
 		},
@@ -1114,18 +1225,18 @@ export default {
 				this.$message.warning('请输入社保号码');
 			} else {
 				let isQueried = false;
-				
+
 				this.entInfo.entMinusStaff.forEach(e => {
-					if(e.siNum == this.mSDInfo.siNum){
+					if (e.siNum == this.mSDInfo.siNum) {
 						this.mSDInfo = this.deepClone(e);
 						this.mSDIsQuery = true;
 						isQueried = true;
 					}
 				});
-				
-				if(!isQueried){
+
+				if (!isQueried) {
 					this.$message.warning('未查询到相关数据');
-				}else{
+				} else {
 					this.$message.success('查询成功');
 				}
 			}
@@ -1152,6 +1263,49 @@ export default {
 		// 关闭事件
 		mSDClose() {
 			this.mSDV = false;
+		},
+
+		// ======================== 缴费基数申报 ========================
+		// ------------ 录入缴费基数申报对话框 ------------
+		// 显示
+		tCBDDShow() {
+			this.tCBDDV = true;
+		},
+		// 查询按钮
+		tCBDDQuery() {
+			if (!this.tCBDDTSiNum) {
+				this.$message.warning('请输入职工社保号码');
+			} else {
+				let isQueried = false;
+
+				this.tCBDDInfo = [];
+				this.entInfo.entStaffInfo.forEach(e => {
+					if (e.siNum == this.tCBDDTSiNum) {
+						isQueried = true;
+						this.tCBDDInfo.push(e);
+					}
+				});
+
+				if (!isQueried) {
+					this.$message.warning('暂无相关数据');
+				} else {
+					this.$message.success('查询成功');
+				}
+			}
+		},
+		// 保存按钮
+		tCBDDSave() {
+			if (this.tCBDDInfo.length == 0) {
+				this.$message.warning('暂无数据');
+			} else {
+				this.tCBDDV = false;
+				this.$store.dispatch('updateEntStaffWageStatus', this.tCBDDInfo);
+				this.$message.success('保存成功');
+			}
+		},
+		// 关闭事件
+		tCBDDClose() {
+			this.tCBDDV = false;
 		}
 	},
 	mounted() {

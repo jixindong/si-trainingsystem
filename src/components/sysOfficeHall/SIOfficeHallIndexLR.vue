@@ -24,7 +24,7 @@
 			<div class="contentBox fRow">
 				<div class="column">
 					<div class="funItem fRow">
-						<span class="dot hover" @click="tRRDIDVShow">劳动用工备案</span>
+						<span class="colorBlack dot hover" @click="tRRDIDVShow">劳动用工备案</span>
 						<img class="hover" src="../../assets/function.png" />
 					</div>
 					<div class="funItem fRow">
@@ -35,7 +35,7 @@
 
 				<div class="column">
 					<div class="funItem fRow">
-						<span class="dot hover" @click="tRRIMDIDShow">劳动用工综合管理</span>
+						<span class="colorBlack dot hover" @click="tRRIMDIDShow">劳动用工综合管理</span>
 						<img class="hover" src="../../assets/function.png" />
 					</div>
 					<div class="funItem fRow">
@@ -249,22 +249,25 @@
 						<el-form-item prop="householdType" label="户口性质">
 							<el-select class="w100" v-model="tRIDInfo.householdType" clearable>
 								<el-option label="请选择" value=""></el-option>
-								<el-option label="非农业户口(城镇)" value="非农业户口(城镇)"></el-option>
-								<el-option label="本地非农业户口(本地城镇)" value="本地非农业户口(本地城镇)"></el-option>
-								<el-option label="外地非农业户口(外地城镇)" value="外地非农业户口(外地城镇)"></el-option>
-								<el-option label="农业户口(农村)" value="农业户口(农村)"></el-option>
-								<el-option label="本地农业户口(本地农村)" value="本地农业户口(本地农村)"></el-option>
-								<el-option label="外地农业户口(外地农村)" value="外地农业户口(外地农村)"></el-option>
-								<el-option label="台港澳人员" value="台港澳人员"></el-option>
-								<el-option label="外籍人士" value="外籍人士"></el-option>
+								<el-option v-for="(item, index) in commonOptions.householdType" :key="index" :label="item" :value="item"></el-option>
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="nation" label="民族"><el-input v-model="tRIDInfo.nation"></el-input></el-form-item>
+						<el-form-item prop="nation" label="民族">
+							<el-select v-model="tRIDInfo.nation" clearable>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.nation" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="educationDegree" label="文化程度"><el-input v-model="tRIDInfo.educationDegree"></el-input></el-form-item>
+						<el-form-item prop="educationDegree" label="文化程度">
+							<el-select v-model="tRIDInfo.educationDegree" clearable>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.educationDegree" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
 					</el-col>
 				</el-row>
 
@@ -307,7 +310,12 @@
 						<el-form-item prop="nationality" label="国籍"><el-input v-model="tRIDInfo.nationality"></el-input></el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="staffType" label="职业(工种)"><el-input v-model="tRIDInfo.staffType"></el-input></el-form-item>
+						<el-form-item prop="staffType" label="职业(工种)">
+							<el-select v-model="tRIDInfo.staffType" clearable>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.staffType" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
 					</el-col>
 				</el-row>
 
@@ -321,12 +329,7 @@
 						<el-form-item prop="staffSort" label="职工类别">
 							<el-select class="w100" v-model="tRIDInfo.staffSort" clearable>
 								<el-option label="请选择" value=""></el-option>
-								<el-option label="在岗人员" value="在岗人员"></el-option>
-								<el-option label="本单位内退人员" value="本单位内退人员"></el-option>
-								<el-option label="劳务派遣人员" value="劳务派遣人员"></el-option>
-								<el-option label="离退休返聘人员" value="离退休返聘人员"></el-option>
-								<el-option label="在校学生" value="在校学生"></el-option>
-								<el-option label="其他" value="其他"></el-option>
+								<el-option v-for="(item, index) in commonOptions.staffSort" :key="index" :label="item" :value="item"></el-option>
 							</el-select>
 						</el-form-item>
 					</el-col>
@@ -354,8 +357,7 @@
 						<el-form-item prop="employmentForm" label="用工形式">
 							<el-select class="w100" v-model="tRIDInfo.employmentForm" clearable>
 								<el-option label="请选择" value=""></el-option>
-								<el-option label="全日制" value="全日制"></el-option>
-								<el-option label="非全日制" value="非全日制"></el-option>
+								<el-option v-for="(item, index) in commonOptions.employmentForm" :key="index" :label="item" :value="item"></el-option>
 							</el-select>
 						</el-form-item>
 					</el-col>
@@ -382,9 +384,7 @@
 						<el-form-item prop="laborContractType" label="合同期限类型">
 							<el-select class="w100" v-model="tRIDInfo.laborContractType" clearable>
 								<el-option label="请选择" value=""></el-option>
-								<el-option label="固定期限" value="固定期限"></el-option>
-								<el-option label="无固定期限" value="无固定期限"></el-option>
-								<el-option label="以完成一定任务为期限" value="以完成一定任务为期限"></el-option>
+								<el-option v-for="(item, index) in commonOptions.laborContractType" :key="index" :label="item" :value="item"></el-option>
 							</el-select>
 						</el-form-item>
 					</el-col>
@@ -522,16 +522,31 @@
 						</el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="householdType" label="户口性质"><el-input v-model="rRIRDInfo.householdType"></el-input></el-form-item>
+						<el-form-item prop="householdType" label="户口性质">
+							<el-select v-model="rRIRDInfo.householdType" clearable>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.householdType" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
 					</el-col>
 				</el-row>
 
 				<el-row :gutter="20">
 					<el-col :span="8">
-						<el-form-item prop="nation" label="民族"><el-input v-model="rRIRDInfo.nation"></el-input></el-form-item>
+						<el-form-item prop="nation" label="民族">
+							<el-select v-model="rRIRDInfo.nation" clearable>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.nation" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="educationDegree" label="文化程度"><el-input v-model="rRIRDInfo.educationDegree"></el-input></el-form-item>
+						<el-form-item prop="educationDegree" label="文化程度">
+							<el-select v-model="rRIRDInfo.educationDegree" clearable>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.educationDegree" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="administrativeDivision" label="行政区划"><el-input v-model="rRIRDInfo.administrativeDivision"></el-input></el-form-item>
@@ -574,7 +589,12 @@
 
 				<el-row :gutter="20">
 					<el-col :span="8">
-						<el-form-item prop="staffType" label="职业（工种）"><el-input v-model="rRIRDInfo.staffType"></el-input></el-form-item>
+						<el-form-item prop="staffType" label="职业(工种)">
+							<el-select v-model="rRIRDInfo.staffType" clearable>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.staffType" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
 					</el-col>
 				</el-row>
 
@@ -585,7 +605,12 @@
 
 				<el-row :gutter="20">
 					<el-col :span="8">
-						<el-form-item prop="staffSort" label="职工类别"><el-input v-model="rRIRDInfo.staffSort"></el-input></el-form-item>
+						<el-form-item prop="staffSort" label="职工类别">
+							<el-select class="w100" v-model="rRIRDInfo.staffSort" clearable>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.staffSort" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="laborContractSign" label="是否签订劳动合同"><el-input v-model="rRIRDInfo.laborContractSign"></el-input></el-form-item>
@@ -597,7 +622,12 @@
 
 				<el-row :gutter="20">
 					<el-col :span="8">
-						<el-form-item prop="employmentForm" label="用工形式"><el-input v-model="rRIRDInfo.employmentForm"></el-input></el-form-item>
+						<el-form-item prop="employmentForm" label="用工形式">
+							<el-select class="w100" v-model="rRIRDInfo.employmentForm" clearable>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.employmentForm" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="recruitStartDateTs" label="用工起始日期">
@@ -613,7 +643,12 @@
 
 				<el-row :gutter="20">
 					<el-col :span="8">
-						<el-form-item prop="laborContractType" label="劳动合同期限类型"><el-input v-model="rRIRDInfo.laborContractType"></el-input></el-form-item>
+						<el-form-item prop="laborContractType" label="合同期限类型">
+							<el-select class="w100" v-model="rRIRDInfo.laborContractType" clearable>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.laborContractType" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="laborContractStartDateTs" label="劳动合同起始日期">
@@ -685,6 +720,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
 	name: 'SIOfficeHallIndexLR',
 	data() {
@@ -849,15 +886,15 @@ export default {
 				nation: [
 					{
 						required: true,
-						message: '请输入民族',
+						message: '请选择民族',
 						trigger: 'blur'
 					}
 				],
 				educationDegree: [
 					{
 						required: true,
-						message: '请输入文化程度',
-						trigger: 'blur'
+						message: '请选择文化程度',
+						trigger: 'change'
 					}
 				],
 				administrativeDivision: [
@@ -1008,6 +1045,11 @@ export default {
 				]
 			} //表单验证规则
 		};
+	},
+	computed: {
+		...mapState({
+			commonOptions: state => state.commonOptions //公共选项
+		})
 	},
 	watch: {
 		// ======================== 劳动用工备案 ========================
@@ -1176,7 +1218,7 @@ export default {
 		// 深拷贝
 		deepClone(target) {
 			let result;
-		
+
 			if (typeof target === 'object') {
 				if (Array.isArray(target)) {
 					result = [];
@@ -1198,7 +1240,7 @@ export default {
 			}
 			return result;
 		},
-		
+
 		// ------------ 日期 ------------
 		getDateString(timestamp) {
 			let date = new Date(timestamp);
@@ -1208,18 +1250,18 @@ export default {
 			let date = new Date(timestamp);
 			return date.getFullYear() + '年';
 		},
-		
+
 		// ------------ 未开放功能按钮 ------------
 		unopenFunction() {
 			this.$message.info('此功能暂未开放');
 		},
-		
+
 		// ------------ 等待中心审批对话框 ------------
 		// 关闭事件
 		wCDDClose() {
 			this.wCDDV = false;
 		},
-		
+
 		// ======================== 劳动用工备案 ========================
 		// ------------ 录入用工备案申报信息对话框 ------------
 		// 显示
@@ -1232,9 +1274,9 @@ export default {
 		},
 		// 申报提交按钮
 		tRRDIDDeclareSubmit() {
-			if(this.tRRDIDInfo.length == 0){
+			if (this.tRRDIDInfo.length == 0) {
 				this.$message.warning('没有录入人员信息，不能提交中心审批');
-			}else{
+			} else {
 				this.wCDDInfo = this.tRRDIDInfo;
 				this.wCDDV = true;
 				this.$store.dispatch('entAddStaff', this.tRRDIDInfo);
@@ -1285,9 +1327,9 @@ export default {
 		},
 		// 申报提交按钮
 		tRRIMDIDDeclareSubmit() {
-			if(this.tRRIMDIDInfo.length == 0){
+			if (this.tRRIMDIDInfo.length == 0) {
 				this.$message.warning('没有录入人员信息，不能提交中心审批');
-			}else{
+			} else {
 				this.wCDDInfo = this.tRRIMDIDInfo;
 				this.wCDDV = true;
 				this.$store.dispatch('entMinusStaff', this.tRRIMDIDInfo);

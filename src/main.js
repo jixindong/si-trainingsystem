@@ -9,7 +9,6 @@ import './style/common.scss'; //引入 公共样式
 Vue.config.productionTip = false; //关闭生产提示
 Vue.use(ElementUI); //使用 ElementUI
 
-
 new Vue({
 	render: h => h(App),
 	router,
