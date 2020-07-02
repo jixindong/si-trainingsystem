@@ -1083,6 +1083,7 @@ export default {
 				this.tASDIDV = false;
 				this.$store.dispatch('updateEntStaffInfo', this.tASDIDInfo);
 				this.$store.dispatch('updateEntStaffChange', this.tASDIDInfo);
+				this.$store.dispatch('aRAddStaff', this.tASDIDInfo);
 				this.$message.success('提交成功');
 			}
 		},
@@ -1166,6 +1167,7 @@ export default {
 				this.tMSDIDV = false;
 				this.$store.dispatch('updateEntStaffInfo', this.tMSDIDInfo);
 				this.$store.dispatch('updateEntStaffChange', this.tMSDIDInfo);
+				this.$store.dispatch('aRMinusStaff', this.tMSDIDInfo);
 				this.$message.success('提交成功');
 			}
 		},

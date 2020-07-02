@@ -386,6 +386,7 @@ export default {
 					this.wOBPDV = false;
 					this.cTRDV = false;
 					this.$store.dispatch('entChargeStatus', this.cTRDInfo);
+					this.$store.dispatch('aRSiCharge', this.cTRDInfo);
 				});
 		},
 		// 关闭事件
@@ -400,6 +401,7 @@ export default {
 				if (valid) {
 					this.pIMADV = false;
 					this.$store.dispatch('modifyEntIMA', this.entInfo.entInvoiceMailingAddr);
+					this.$store.dispatch('aRModifyIMA', this.entInfo.entInvoiceMailingAddr);
 					this.$message.success('发票邮寄成功');
 				} else {
 					this.$message.warning('请完善所有【必填】信息');

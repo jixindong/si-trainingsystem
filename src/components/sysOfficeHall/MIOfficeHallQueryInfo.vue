@@ -1447,6 +1447,7 @@ export default {
 				this.$message.warning('请完善发票邮寄地址信息');
 			} else {
 				this.$store.dispatch('modifyEntIMA', this.entInfo.entInvoiceMailingAddr);
+				this.$store.dispatch('aRModifyIMA', this.entInfo.entInvoiceMailingAddr);
 				this.$message.success('保存发票邮寄地址信息成功');
 			}
 		},

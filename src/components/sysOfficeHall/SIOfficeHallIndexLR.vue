@@ -1008,6 +1008,7 @@ export default {
 			// ------------ 录入备案信息对话框 ------------
 			tRIDV: false, //是否显示
 			tRIDInfo: {
+				declareType: '新增', //申报类型
 				IDType: '', //证件类型
 				IDNum: '', //证件号码
 				name: '', //姓名
@@ -1810,8 +1811,9 @@ export default {
 			} else {
 				this.wCDDInfo = this.tRRDIDInfo;
 				this.wCDDV = true;
+				this.tRRDIDV = false;
 				this.$store.dispatch('entAddStaff', this.tRRDIDInfo);
-				this.$message.success('提交成功');
+				this.$store.dispatch('aRAddRecruitRecords',this.tRRDIDInfo);
 			}
 		},
 		// 关闭事件
@@ -1875,10 +1877,12 @@ export default {
 				}
 				if (relieveArray.length > 0) {
 					this.$store.dispatch('entMinusStaff', relieveArray);
+					this.$store.dispatch('aRRelieveRecruitRecords',relieveArray);
 				}
 
 				this.wCDDInfo = this.tRRIMDIDInfo;
 				this.wCDDV = true;
+				this.tRRIMDIDV = false;
 			}
 		},
 		// 关闭事件
