@@ -159,7 +159,7 @@
 
 		<!-- ======================== 在职增员 ======================== -->
 		<!-- 录入增员申报信息对话框 -->
-		<el-dialog title="录入增员申报信息" width="60%" :visible.sync="tASDIDV" :before-close="tASDIDClose">
+		<el-dialog title="录入增员申报信息" width="1024px" :visible.sync="tASDIDV" :before-close="tASDIDClose">
 			<div>
 				<el-table :data="tASDIDInfo" max-height="400px" stripe border>
 					<el-table-column type="index" label="No." fixed></el-table-column>
@@ -188,7 +188,7 @@
 		<!-- 录入增员申报信息对话框 end -->
 
 		<!-- 人员新增对话框 -->
-		<el-dialog title="人员新增" width="60%" :visible.sync="sADV" :before-close="sADClose">
+		<el-dialog title="人员新增" width="1024px" :visible.sync="sADV" :before-close="sADClose">
 			<el-form class="dialogForm" :model="sADInfo" :rules="sADFormRules" ref="sADFormRef" label-width="136px" size="mini">
 				<div class="dialogTitleBox fRow">
 					<img class="mgR10" src="@/assets/edit.png" />
@@ -424,7 +424,7 @@
 
 		<!-- ======================== 在职减员 ======================== -->
 		<!-- 录入减员申报信息对话框 -->
-		<el-dialog title="录入减员申报信息" width="60%" :visible.sync="tMSDIDV" :before-close="tMSDIDClose">
+		<el-dialog title="录入减员申报信息" width="1024px" :visible.sync="tMSDIDV" :before-close="tMSDIDClose">
 			<div>
 				<el-table :data="tMSDIDInfo" max-height="400px" stripe border>
 					<el-table-column type="index" label="No." fixed></el-table-column>
@@ -452,7 +452,7 @@
 		<!-- 录入减员申报信息对话框 end -->
 
 		<!-- 职工减员对话框 -->
-		<el-dialog title="职工减员" width="60%" :visible.sync="mSDV" :before-close="mSDClose">
+		<el-dialog title="职工减员" width="1024px" :visible.sync="mSDV" :before-close="mSDClose">
 			<el-form label-width="110px" size="mini" :model="mSDInfo" :rules="mSDFormRules" ref="mSDFormRef">
 				<el-row :gutter="20">
 					<el-col :span="8">
@@ -543,7 +543,7 @@
 		<!-- ======================== 在职减员 end ======================== -->
 
 		<!-- ======================== 缴费基数申报 ======================== -->
-		<el-dialog title="录入缴费基数申报" :visible.sync="tCBDDV" :before-close="tCBDDClose">
+		<el-dialog title="录入缴费基数申报" width="1024px" :visible.sync="tCBDDV" :before-close="tCBDDClose">
 			<el-form label-width="100px" size="mini">
 				<div>
 					<el-table :data="tCBDDInfo" max-height="300px" stripe border>

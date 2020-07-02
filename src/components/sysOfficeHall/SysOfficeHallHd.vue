@@ -29,7 +29,7 @@
 		<!-- 账号设置 下拉菜单 end -->
 
 		<!-- 修改密码 对话框 -->
-		<el-dialog title="修改密码" width="800px" :visible.sync="cPDV" :before-close="cPDClose">
+		<el-dialog title="修改密码" width="1024px" :visible.sync="cPDV" :before-close="cPDClose">
 			<el-form :model="iPassword" :rules="passwordRules" ref="passwordRef" label-width="100px" status-icon>
 				<el-form-item label="原密码" prop="iOPassword" required>
 					<el-input type="password" placeholder="请输入原密码" v-model="iPassword.iOPassword"></el-input>
@@ -49,28 +49,34 @@
 		<!-- 修改密码 对话框 end -->
 
 		<!-- 单位信息 对话框 -->
-		<el-dialog title="单位信息" width="800px" :visible.sync="cIDV" :before-close="cIDClose" custom-class="centInfoDialog">
+		<el-dialog title="单位信息" width="1024px" :visible.sync="cIDV" :before-close="cIDClose" custom-class="centInfoDialog">
 			<el-form label-width="100px">
-				<el-form-item label="单位名称"><el-input type="text" value="淄博问云软件技术有限公司" size="mini"></el-input></el-form-item>
+				<el-row>
+					<el-form-item label="单位名称"><el-input type="text" value="淄博问云软件技术有限公司" size="mini"></el-input></el-form-item>
+				</el-row>
 
-				<el-col :span="12">
-					<el-form-item label="开通时间"><el-input type="text" value="2017-01-12" size="mini"></el-input></el-form-item>
-				</el-col>
-				<el-col :span="12">
-					<el-form-item label="组织机构代码"><el-input type="text" value="91370303060449475K" size="mini"></el-input></el-form-item>
-				</el-col>
+				<el-row>
+					<el-col :span="12">
+						<el-form-item label="开通时间"><el-input type="text" value="2017-01-12" size="mini"></el-input></el-form-item>
+					</el-col>
+					<el-col :span="12">
+						<el-form-item label="组织机构代码"><el-input type="text" value="91370303060449475K" size="mini"></el-input></el-form-item>
+					</el-col>
+				</el-row>
 
-				<el-col :span="12">
-					<el-form-item label="专管员姓名"><el-input type="text" value="张三" size="mini"></el-input></el-form-item>
-				</el-col>
-				<el-col :span="12">
-					<el-form-item label="专管员电话"><el-input type="text" value="12345678910" size="mini"></el-input></el-form-item>
-				</el-col>
+				<el-row>
+					<el-col :span="12">
+						<el-form-item label="专管员姓名"><el-input type="text" value="张三" size="mini"></el-input></el-form-item>
+					</el-col>
+					<el-col :span="12">
+						<el-form-item label="专管员电话"><el-input type="text" value="12345678910" size="mini"></el-input></el-form-item>
+					</el-col>
+				</el-row>
+
+				<el-row class="mgB10" type="flex" justify="end"><el-button size="mini">基于社保更新单位信息</el-button></el-row>
 			</el-form>
 
-			<el-button class="updateInfoBtn" size="mini">基于社保更新单位信息</el-button>
-
-			<el-table :data="entInfoTb" height="217" size="mini" border :header-cell-style="{ color: '#0094ff' }">
+			<el-table :data="entInfoTb" max-height="220px" size="mini" border :header-cell-style="{ color: '#0094ff' }">
 				<el-table-column prop="id" label="No." width="50"></el-table-column>
 				<el-table-column prop="businessScope" label="业务领域"></el-table-column>
 				<el-table-column prop="entName" label="单位名称"></el-table-column>
@@ -256,9 +262,6 @@ export default {
 	.centInfoDialog {
 		.el-form .el-form-item {
 			margin-bottom: 10px;
-		}
-		.updateInfoBtn {
-			margin: 0 0 20px 608px;
 		}
 	}
 	// 单位信息 对话框 end

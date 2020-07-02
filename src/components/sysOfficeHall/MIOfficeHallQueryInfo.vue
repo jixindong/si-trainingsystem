@@ -184,7 +184,7 @@
 					</el-form>
 				</div>
 
-				<el-dialog title="单位人员详情" :visible.sync="eSDV" width="60%" :before-close="eSDClose">
+				<el-dialog title="单位人员详情" :visible.sync="eSDV" width="1024px" :before-close="eSDClose">
 					<el-form label-width="124px" size="mini">
 						<el-row :gutter="10">
 							<el-col :span="8">
@@ -525,7 +525,7 @@
 					</el-form>
 				</div>
 
-				<el-dialog title="人员信息" :visible.sync="sPDV" width="60%" :before-close="sPDClose">
+				<el-dialog title="人员信息" :visible.sync="sPDV" width="1024px" :before-close="sPDClose">
 					<el-table :data="entInfo.entStaffInfo" max-height="500" stripe border @row-dblclick="sPDTbRowCh">
 						<el-table-column type="index" label="No."></el-table-column>
 						<el-table-column prop="name" label="姓名" show-overflow-tooltip></el-table-column>
@@ -764,7 +764,7 @@
 					</el-form>
 				</div>
 
-				<el-dialog title="劳动用工备案明细" :visible.sync="dQDV" width="60%" :before-close="dQDClose">
+				<el-dialog title="劳动用工备案明细" :visible.sync="dQDV" width="1024px" :before-close="dQDClose">
 					<el-form label-width="124px" size="mini">
 						<el-row :gutter="10">
 							<el-col :span="8">

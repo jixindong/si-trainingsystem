@@ -49,6 +49,7 @@ const store = new Vuex.Store({
 				nation: '汉族', //民族
 				nationality: '中国', //国籍
 				birthday: '1980年11月1日', //出生日期
+				birthdayTs: '',
 				postalCode: '255000', //邮政编码
 				administrativeDivision: '山东省淄博市张店区', //行政区划
 				homeAddr: '山东省淄博市张店区马尚镇', //家庭住址
@@ -74,19 +75,31 @@ const store = new Vuex.Store({
 				insuredSort: '在职人员', //参保人员类别
 				insuredSortName: '企业养老,一次性养老补助,失业,工伤', //投保类别名称
 				insuredDate: '2020年6月10日', //投保日期
-				reInsuredNum: '0', //续订次数
+				insuredDateTs: '',
 				insuredRecordDate: '2020年6月10日', //备案日期
+				insuredRecordDateTs: '',
 				employmentYear: '2010年', //参加工作年份
+				employmentYearTs: '',
 				employmentDate: '2010年1月10日', //参加工作日期
 				recruitStartDate: '2020年6月10日', //用工起始日期
+				recruitStartDateTs: '',
 				recruitEndDate: '', //用工终止日期
+				recruitEndDateTs: '',
 				laborContractSign: '是', //是否签订劳动合同
 				laborContractStatus: '未到期', //劳动合同状态
 				laborContractType: '固定期限', //劳动合同期限类型
 				laborContractStartDate: '2020年5月1日', //劳动合同起始日期
+				laborContractStartDateTs: '',
 				laborContractEndDate: '2020年5月31日', //劳动合同终止日期
+				laborContractEndDateTs: '',
+				laborContractRelieveDate: '', //劳动合同解除日期
+				laborContractRelieveDateTs: '',
+				laborContractRelieveCause: '', //劳动合同解除原因
+				reInsuredNum: '0', //续订次数
 				hireStartDate: '2020年6月10日', //试用起始日期
+				hireStartDateTs: '',
 				hireEndDate: '', //试用终止日期
+				hireEndDateTs: '',
 				subEntNum: '666', //二级单位编号
 				subEntName: '问云教育', //二级单位名称
 				chargeBase: '3300', //缴费基数
@@ -297,6 +310,20 @@ const store = new Vuex.Store({
 		},
 		// 公共选项
 		commonOptions: {
+			// 证件类型
+			IDType: [
+				'居民身份证(户口簿)',
+				'中国人民解放军军官证',
+				'中国人民武装警察警官证',
+				'香港特区护照、港澳居民往来内地通行证',
+				'澳门特区护照、港澳居民往来内地通行证',
+				'台湾居民来往大陆通行证',
+				'外国人护照',
+				'残疾人证',
+				'军烈属证明',
+				'社会保障卡',
+				'其他身份证件'
+			],
 			// 民族
 			nation: [
 				'汉族',
@@ -474,7 +501,36 @@ const store = new Vuex.Store({
 				'无固定期限',
 				'以完成一定任务为期限'
 			]
-		}
+		},
+		// 试题
+		examQuestions:[
+			{
+				id:1,
+				title:'劳动关系增员'
+			},
+			{
+				id:2,
+				title:'劳动关系减员'
+			},
+			{
+				id:3,
+				title:'社会保障增员'
+			},
+			{
+				id:4,
+				title:'社会保障减员'
+			},
+			{
+				id:5,
+				title:'缴费基数申报'
+			},
+			{
+				id:6,
+				title:'社保缴费(网上缴费)'
+			}
+		],
+		// 答题记录
+		answerRecord:{}
 	},
 	getters: {},
 	mutations: {
@@ -482,7 +538,7 @@ const store = new Vuex.Store({
 		modifyPassword(state, mp) {
 			state.entInfo.entAccount.password = mp;
 		},
-		// 更新企业职工信息
+		// 更新企业职工信息 职工数量
 		updateEntStaffInfo(state, us) {
 			us.forEach(e => {
 				if (e.addSICause) {
@@ -494,6 +550,16 @@ const store = new Vuex.Store({
 						}
 					});
 				}
+			});
+		},
+		// 修改企业职工信息 职工信息
+		modifyEntStaffInfo(state, ms) {
+			ms.forEach(e => {
+				state.entInfo.entStaffInfo.forEach((value, index) => {
+					if (value.IDNum == e.IDNum) {
+						state.entInfo.entStaffInfo[index] = e;
+					}
+				});
 			});
 		},
 		// 更新企业职工工资情况
@@ -536,9 +602,13 @@ const store = new Vuex.Store({
 		modifyPassword(context, mp) {
 			context.commit('modifyPassword', mp);
 		},
-		// 更新企业职工信息
+		// 更新企业职工信息 职工数量
 		updateEntStaffInfo(context, us) {
 			context.commit('updateEntStaffInfo', us);
+		},
+		// 修改企业职工信息 职工信息
+		modifyEntStaffInfo(context, ms) {
+			context.commit('modifyEntStaffInfo', ms);
 		},
 		// 更新企业职工工资情况
 		updateEntStaffWageStatus(context, sw) {

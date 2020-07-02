@@ -142,12 +142,32 @@
 		<!-- ======================== 主体 end ======================== -->
 
 		<!-- ======================== 公共 ======================== -->
-		<el-dialog title="等待中心审批" width="60%" :visible.sync="wCDDV" :before-close="wCDDClose">
+		<!-- 单位用工备案信息对话框 -->
+		<el-dialog title="单位用工备案信息" width="1024px" :visible.sync="eRRIDV" :before-close="eRRIDClose">
+			<div>
+				<el-table :data="entInfo.entStaffInfo" max-height="400px" stripe border @row-dblclick="eRRIDTbRowDbC">
+					<el-table-column type="index" label="No." fixed></el-table-column>
+					<el-table-column prop="IDType" label="证件类型" show-overflow-tooltip></el-table-column>
+					<el-table-column prop="IDNum" label="证件号码" show-overflow-tooltip></el-table-column>
+					<el-table-column prop="name" label="姓名" show-overflow-tooltip></el-table-column>
+					<el-table-column prop="recruitStartDate" label="用工起始日期" show-overflow-tooltip></el-table-column>
+					<el-table-column prop="laborContractStatus" label="劳动合同状态" show-overflow-tooltip></el-table-column>
+					<el-table-column prop="laborContractType" label="劳动合同期限类型" show-overflow-tooltip></el-table-column>
+					<el-table-column prop="laborContractStartDate" label="劳动合同起始日期" show-overflow-tooltip></el-table-column>
+					<el-table-column prop="laborContractEndDate" label="劳动合同终止日期" show-overflow-tooltip></el-table-column>
+				</el-table>
+			</div>
+		</el-dialog>
+		<!-- 单位用工备案信息对话框 end -->
+
+		<!-- 等待中心审批对话框 -->
+		<el-dialog title="等待中心审批" width="1024px" :visible.sync="wCDDV" :before-close="wCDDClose">
 			<div class="mgB10 colorRed">您办理的用工备案业务已经成功提交，请携带相关材料到有关部门办理业务！</div>
 
 			<div>
 				<el-table :data="wCDDInfo" max-height="400" size="mini" stripe border>
 					<el-table-column type="index" label="No." fixed></el-table-column>
+					<el-table-column prop="declareType" label="申报类型" show-overflow-tooltip></el-table-column>
 					<el-table-column prop="IDType" label="有效证件类型" show-overflow-tooltip></el-table-column>
 					<el-table-column prop="IDNum" label="有效证件号码" show-overflow-tooltip></el-table-column>
 					<el-table-column prop="name" label="姓名" show-overflow-tooltip></el-table-column>
@@ -160,11 +180,12 @@
 				</el-table>
 			</div>
 		</el-dialog>
+		<!-- 等待中心审批对话框 end -->
 		<!-- ======================== 公共 end ======================== -->
 
 		<!-- ======================== 劳动用工备案 ======================== -->
 		<!-- 录入用工备案申报信息对话框 -->
-		<el-dialog title="录入用工备案申报信息" :visible.sync="tRRDIDV" width="60%" :before-close="tRRDIDClose">
+		<el-dialog title="录入用工备案申报信息" :visible.sync="tRRDIDV" width="1024px" :before-close="tRRDIDClose">
 			<div>
 				<el-table :data="tRRDIDInfo" max-height="400" size="mini" stripe border>
 					<el-table-column type="index" label="No." fixed></el-table-column>
@@ -181,7 +202,7 @@
 			</div>
 
 			<el-row class="mgT20" type="flex" justify="end">
-				<el-button size="mini" @click="tRRDIDAddRecruit">新增用工备案</el-button>
+				<el-button size="mini" @click="tRIDShow">新增用工备案</el-button>
 				<el-button size="mini" @click="unopenFunction">修改用工备案</el-button>
 				<el-button size="mini" @click="unopenFunction">删除用工备案</el-button>
 				<el-button size="mini" @click="unopenFunction">批量新增</el-button>
@@ -192,7 +213,7 @@
 		<!-- 录入用工备案申报信息对话框 end -->
 
 		<!-- 录入备案信息对话框 -->
-		<el-dialog title="录入备案信息" :visible.sync="tRIDV" width="60%" :before-close="tRIDClose">
+		<el-dialog title="录入备案信息" :visible.sync="tRIDV" width="1024px" :before-close="tRIDClose">
 			<el-form class="dialogForm" label-width="136px" size="mini" :model="tRIDInfo" :rules="tRIDFormRules" ref="tRIDFormRef">
 				<div class="dialogTitleBox fRow">
 					<img class="mgR10" src="@/assets/edit.png" />
@@ -255,7 +276,7 @@
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="nation" label="民族">
-							<el-select v-model="tRIDInfo.nation" clearable>
+							<el-select class="w100" v-model="tRIDInfo.nation" clearable>
 								<el-option label="请选择" value=""></el-option>
 								<el-option v-for="(item, index) in commonOptions.nation" :key="index" :label="item" :value="item"></el-option>
 							</el-select>
@@ -263,7 +284,7 @@
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="educationDegree" label="文化程度">
-							<el-select v-model="tRIDInfo.educationDegree" clearable>
+							<el-select class="w100" v-model="tRIDInfo.educationDegree" clearable>
 								<el-option label="请选择" value=""></el-option>
 								<el-option v-for="(item, index) in commonOptions.educationDegree" :key="index" :label="item" :value="item"></el-option>
 							</el-select>
@@ -311,7 +332,7 @@
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="staffType" label="职业(工种)">
-							<el-select v-model="tRIDInfo.staffType" clearable>
+							<el-select class="w100" v-model="tRIDInfo.staffType" clearable>
 								<el-option label="请选择" value=""></el-option>
 								<el-option v-for="(item, index) in commonOptions.staffType" :key="index" :label="item" :value="item"></el-option>
 							</el-select>
@@ -424,10 +445,11 @@
 
 		<!-- ======================== 劳动用工综合管理 ======================== -->
 		<!-- 录入用工备案综合管理申报信息对话框 -->
-		<el-dialog title="录入用工备案综合管理申报信息" width="60%" :visible.sync="tRRIMDIDV" :before-close="tRRIMDIDClose">
+		<el-dialog title="录入用工备案综合管理申报信息" width="1024px" :visible.sync="tRRIMDIDV" :before-close="tRRIMDIDClose">
 			<div>
 				<el-table :data="tRRIMDIDInfo" max-height="400" size="mini" stripe border>
 					<el-table-column type="index" label="No." fixed></el-table-column>
+					<el-table-column prop="declareType" label="申报类型" show-overflow-tooltip></el-table-column>
 					<el-table-column prop="IDType" label="有效证件类型" show-overflow-tooltip></el-table-column>
 					<el-table-column prop="IDNum" label="有效证件号码" show-overflow-tooltip></el-table-column>
 					<el-table-column prop="name" label="姓名" show-overflow-tooltip></el-table-column>
@@ -455,20 +477,15 @@
 					</el-dropdown-menu>
 				</el-dropdown>
 
-				<el-button size="mini" @click="unopenFunction">修改一行</el-button>
-				<el-button size="mini" @click="unopenFunction">删除一行</el-button>
-				<el-button size="mini" @click="unopenFunction">批量续订</el-button>
-				<el-button size="mini" @click="unopenFunction">批量解除</el-button>
-				<el-button size="mini" @click="unopenFunction">批量终止</el-button>
 				<el-button size="mini" @click="tRRIMDIDDeclareSubmit">申报提交</el-button>
 				<el-button size="mini" @click="unopenFunction">申报作废</el-button>
 			</el-row>
 		</el-dialog>
 		<!-- 录入用工备案综合管理申报信息对话框 end -->
 
-		<!-- 用工备案信息解除对话框 -->
-		<el-dialog title="用工备案信息解除" width="60%" :visible.sync="rRIRDV" :before-close="rRIRDClose">
-			<el-form class="dialogForm" label-width="124px" size="mini" :model="rRIRDInfo" :rules="rRIRDFormRules" ref="rRIRDFormRef">
+		<!-- 用工备案信息修改对话框 -->
+		<el-dialog title="用工备案信息修改" width="1024px" :visible.sync="rRIMDV" :before-close="rRIMDClose">
+			<el-form class="dialogForm" label-width="136px" size="mini" :model="rRIMDInfo" :rules="rRIMDFormRules" ref="rRIMDFormRef">
 				<div class="dialogTitleBox fRow">
 					<img class="mgR10" src="@/assets/edit.png" />
 					<span>选择人员</span>
@@ -477,27 +494,19 @@
 				<el-row :gutter="20">
 					<el-col :span="8">
 						<el-form-item prop="IDType" label="有效证件类型">
-							<el-select class="w100" v-model="rRIRDInfo.IDType" clearable>
+							<el-select class="w100" v-model="rRIMDInfo.IDType" disabled>
 								<el-option label="请选择" value=""></el-option>
-								<el-option label="居民身份证(户口簿)" value="居民身份证(户口簿)"></el-option>
-								<el-option label="中国人民解放军军官证" value="中国人民解放军军官证"></el-option>
-								<el-option label="中国人民武装警察警官证" value="中国人民武装警察警官证"></el-option>
-								<el-option label="香港特区护照、港澳居民往来内地通行证" value="香港特区护照、港澳居民往来内地通行证"></el-option>
-								<el-option label="澳门特区护照、港澳居民往来内地通行证" value="澳门特区护照、港澳居民往来内地通行证"></el-option>
-								<el-option label="台湾居民来往大陆通行证" value="台湾居民来往大陆通行证"></el-option>
-								<el-option label="外国人护照" value="外国人护照"></el-option>
-								<el-option label="残疾人证" value="残疾人证"></el-option>
-								<el-option label="军烈属证明" value="军烈属证明"></el-option>
-								<el-option label="社会保障卡" value="社会保障卡"></el-option>
-								<el-option label="其他身份证件" value="其他身份证件"></el-option>
+								<el-option v-for="(item, index) in commonOptions.IDType" :key="index" :label="item" :value="item"></el-option>
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="IDNum" label="有效证件号码"><el-input v-model="rRIRDInfo.IDNum"></el-input></el-form-item>
+						<el-form-item prop="IDNum" label="有效证件号码">
+							<el-input v-model="rRIMDInfo.IDNum" disabled><el-button slot="append" icon="el-icon-search" @click="eRRIDShow"></el-button></el-input>
+						</el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="name" label="姓名"><el-input v-model="rRIRDInfo.name"></el-input></el-form-item>
+						<el-form-item prop="name" label="姓名"><el-input v-model="rRIMDInfo.name" disabled></el-input></el-form-item>
 					</el-col>
 				</el-row>
 
@@ -509,12 +518,12 @@
 				<el-row :gutter="20">
 					<el-col :span="8">
 						<el-form-item prop="birthdayTs" label="出生日期">
-							<el-date-picker class="w100" v-model="rRIRDInfo.birthdayTs" type="date" value-format="timestamp" placeholder="选择日期"></el-date-picker>
+							<el-date-picker class="w100" v-model="rRIMDInfo.birthdayTs" type="date" value-format="timestamp" placeholder="选择日期"></el-date-picker>
 						</el-form-item>
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="sex" label="性别">
-							<el-select class="w100" v-model="rRIRDInfo.sex" clearable>
+							<el-select class="w100" v-model="rRIMDInfo.sex">
 								<el-option label="请选择" value=""></el-option>
 								<el-option label="男" value="男"></el-option>
 								<el-option label="女" value="女"></el-option>
@@ -523,7 +532,7 @@
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="householdType" label="户口性质">
-							<el-select v-model="rRIRDInfo.householdType" clearable>
+							<el-select v-model="rRIMDInfo.householdType">
 								<el-option label="请选择" value=""></el-option>
 								<el-option v-for="(item, index) in commonOptions.householdType" :key="index" :label="item" :value="item"></el-option>
 							</el-select>
@@ -534,7 +543,7 @@
 				<el-row :gutter="20">
 					<el-col :span="8">
 						<el-form-item prop="nation" label="民族">
-							<el-select v-model="rRIRDInfo.nation" clearable>
+							<el-select v-model="rRIMDInfo.nation">
 								<el-option label="请选择" value=""></el-option>
 								<el-option v-for="(item, index) in commonOptions.nation" :key="index" :label="item" :value="item"></el-option>
 							</el-select>
@@ -542,55 +551,55 @@
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="educationDegree" label="文化程度">
-							<el-select v-model="rRIRDInfo.educationDegree" clearable>
+							<el-select v-model="rRIMDInfo.educationDegree">
 								<el-option label="请选择" value=""></el-option>
 								<el-option v-for="(item, index) in commonOptions.educationDegree" :key="index" :label="item" :value="item"></el-option>
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="administrativeDivision" label="行政区划"><el-input v-model="rRIRDInfo.administrativeDivision"></el-input></el-form-item>
+						<el-form-item prop="administrativeDivision" label="行政区划"><el-input v-model="rRIMDInfo.administrativeDivision"></el-input></el-form-item>
 					</el-col>
 				</el-row>
 
 				<el-row :gutter="20">
 					<el-col :span="16">
-						<el-form-item prop="householdLocation" label="户籍详细地址"><el-input v-model="rRIRDInfo.householdLocation"></el-input></el-form-item>
+						<el-form-item prop="householdLocation" label="户籍详细地址"><el-input v-model="rRIMDInfo.householdLocation"></el-input></el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="siNum" label="社保号"><el-input v-model="rRIRDInfo.siNum"></el-input></el-form-item>
+						<el-form-item prop="siNum" label="社保号"><el-input v-model="rRIMDInfo.siNum"></el-input></el-form-item>
 					</el-col>
 				</el-row>
 
 				<el-row :gutter="20">
 					<el-col :span="16">
-						<el-form-item prop="homeAddr" label="现住址"><el-input v-model="rRIRDInfo.homeAddr"></el-input></el-form-item>
+						<el-form-item prop="homeAddr" label="现住址"><el-input v-model="rRIMDInfo.homeAddr"></el-input></el-form-item>
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="insuredDateTs" label="投保日期">
-							<el-date-picker class="w100" v-model="rRIRDInfo.insuredDateTs" type="date" value-format="timestamp" placeholder="选择日期"></el-date-picker>
+							<el-date-picker class="w100" v-model="rRIMDInfo.insuredDateTs" type="date" value-format="timestamp" placeholder="选择日期"></el-date-picker>
 						</el-form-item>
 					</el-col>
 				</el-row>
 
 				<el-row :gutter="20">
 					<el-col :span="8">
-						<el-form-item prop="postalCode" label="邮政编码"><el-input v-model="rRIRDInfo.postalCode"></el-input></el-form-item>
+						<el-form-item prop="postalCode" label="邮政编码"><el-input v-model="rRIMDInfo.postalCode"></el-input></el-form-item>
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="employmentYearTs" label="参加工作年份">
-							<el-date-picker class="w100" v-model="rRIRDInfo.employmentYearTs" type="year" value-format="timestamp" placeholder="选择年份"></el-date-picker>
+							<el-date-picker class="w100" v-model="rRIMDInfo.employmentYearTs" type="year" value-format="timestamp" placeholder="选择年份"></el-date-picker>
 						</el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="nationality" label="国籍"><el-input v-model="rRIRDInfo.nationality"></el-input></el-form-item>
+						<el-form-item prop="nationality" label="国籍"><el-input v-model="rRIMDInfo.nationality"></el-input></el-form-item>
 					</el-col>
 				</el-row>
 
 				<el-row :gutter="20">
 					<el-col :span="8">
 						<el-form-item prop="staffType" label="职业(工种)">
-							<el-select v-model="rRIRDInfo.staffType" clearable>
+							<el-select v-model="rRIMDInfo.staffType">
 								<el-option label="请选择" value=""></el-option>
 								<el-option v-for="(item, index) in commonOptions.staffType" :key="index" :label="item" :value="item"></el-option>
 							</el-select>
@@ -606,24 +615,26 @@
 				<el-row :gutter="20">
 					<el-col :span="8">
 						<el-form-item prop="staffSort" label="职工类别">
-							<el-select class="w100" v-model="rRIRDInfo.staffSort" clearable>
+							<el-select class="w100" v-model="rRIMDInfo.staffSort">
 								<el-option label="请选择" value=""></el-option>
 								<el-option v-for="(item, index) in commonOptions.staffSort" :key="index" :label="item" :value="item"></el-option>
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="laborContractSign" label="是否签订劳动合同"><el-input v-model="rRIRDInfo.laborContractSign"></el-input></el-form-item>
+						<el-form-item prop="subEntName" label="派遣单位名称"><el-input v-model="rRIMDInfo.subEntName"></el-input></el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="reInsuredNum" label="续订次数"><el-input v-model="rRIRDInfo.reInsuredNum"></el-input></el-form-item>
+						<el-form-item prop="insuredRecordDateTs" label="备案日期">
+							<el-date-picker class="w100" v-model="rRIMDInfo.insuredRecordDateTs" type="date" value-format="timestamp" placeholder="选择日期"></el-date-picker>
+						</el-form-item>
 					</el-col>
 				</el-row>
 
 				<el-row :gutter="20">
 					<el-col :span="8">
 						<el-form-item prop="employmentForm" label="用工形式">
-							<el-select class="w100" v-model="rRIRDInfo.employmentForm" clearable>
+							<el-select class="w100" v-model="rRIMDInfo.employmentForm">
 								<el-option label="请选择" value=""></el-option>
 								<el-option v-for="(item, index) in commonOptions.employmentForm" :key="index" :label="item" :value="item"></el-option>
 							</el-select>
@@ -631,33 +642,51 @@
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="recruitStartDateTs" label="用工起始日期">
-							<el-date-picker class="w100" v-model="rRIRDInfo.recruitStartDateTs" type="date" value-format="timestamp" placeholder="选择日期"></el-date-picker>
+							<el-date-picker class="w100" v-model="rRIMDInfo.recruitStartDateTs" type="date" value-format="timestamp" placeholder="选择日期"></el-date-picker>
 						</el-form-item>
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="recruitEndDateTs" label="用工终止日期">
-							<el-date-picker class="w100" v-model="rRIRDInfo.recruitEndDateTs" type="date" value-format="timestamp" placeholder="选择日期"></el-date-picker>
+							<el-date-picker class="w100" v-model="rRIMDInfo.recruitEndDateTs" type="date" value-format="timestamp" placeholder="选择日期"></el-date-picker>
 						</el-form-item>
 					</el-col>
 				</el-row>
 
 				<el-row :gutter="20">
 					<el-col :span="8">
+						<el-form-item prop="reInsuredNum" label="续订次数"><el-input v-model="rRIMDInfo.reInsuredNum"></el-input></el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="laborContractSign" label="是否签订劳动合同">
+							<el-select v-model="rRIMDInfo.laborContractSign" clearable>
+								<el-option label="请选择" value=""></el-option>
+								<el-option label="是" value="是"></el-option>
+								<el-option label="否" value="否"></el-option>
+							</el-select>
+						</el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="laborContractStatus" label="合同状态"><el-input v-model="rRIMDInfo.laborContractStatus"></el-input></el-form-item>
+					</el-col>
+				</el-row>
+
+				<el-row :gutter="20">
+					<el-col :span="8">
 						<el-form-item prop="laborContractType" label="合同期限类型">
-							<el-select class="w100" v-model="rRIRDInfo.laborContractType" clearable>
+							<el-select class="w100" v-model="rRIMDInfo.laborContractType">
 								<el-option label="请选择" value=""></el-option>
 								<el-option v-for="(item, index) in commonOptions.laborContractType" :key="index" :label="item" :value="item"></el-option>
 							</el-select>
 						</el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="laborContractStartDateTs" label="劳动合同起始日期">
-							<el-date-picker class="w100" v-model="rRIRDInfo.laborContractStartDateTs" type="date" value-format="timestamp" placeholder="选择日期"></el-date-picker>
+						<el-form-item prop="laborContractStartDateTs" label="合同起始日期">
+							<el-date-picker class="w100" v-model="rRIMDInfo.laborContractStartDateTs" type="date" value-format="timestamp" placeholder="选择日期"></el-date-picker>
 						</el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="laborContractEndDateTs" label="劳动合同终止日期">
-							<el-date-picker class="w100" v-model="rRIRDInfo.laborContractEndDateTs" type="date" value-format="timestamp" placeholder="选择日期"></el-date-picker>
+						<el-form-item prop="laborContractEndDateTs" label="合同终止日期">
+							<el-date-picker class="w100" v-model="rRIMDInfo.laborContractEndDateTs" type="date" value-format="timestamp" placeholder="选择日期"></el-date-picker>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -665,12 +694,248 @@
 				<el-row :gutter="20">
 					<el-col :span="8">
 						<el-form-item prop="hireStartDateTs" label="试用起始日期">
-							<el-date-picker class="w100" v-model="rRIRDInfo.hireStartDateTs" type="date" value-format="timestamp" placeholder="选择日期"></el-date-picker>
+							<el-date-picker class="w100" v-model="rRIMDInfo.hireStartDateTs" type="date" value-format="timestamp" placeholder="选择日期"></el-date-picker>
 						</el-form-item>
 					</el-col>
 					<el-col :span="8">
 						<el-form-item prop="hireEndDateTs" label="试用终止日期">
-							<el-date-picker class="w100" v-model="rRIRDInfo.hireEndDateTs" type="date" value-format="timestamp" placeholder="选择日期"></el-date-picker>
+							<el-date-picker class="w100" v-model="rRIMDInfo.hireEndDateTs" type="date" value-format="timestamp" placeholder="选择日期"></el-date-picker>
+						</el-form-item>
+					</el-col>
+				</el-row>
+
+				<div class="fRow">
+					<el-button size="mini" @click="rRIMDSave">保存</el-button>
+					<el-button type="primary" size="mini" plain @click="rRIMDReset">重置</el-button>
+				</div>
+			</el-form>
+		</el-dialog>
+		<!-- 用工备案信息修改对话框 end -->
+
+		<!-- 用工备案信息解除对话框 -->
+		<el-dialog title="用工备案信息解除" width="1024px" :visible.sync="rRIRDV" :before-close="rRIRDClose">
+			<el-form class="dialogForm" label-width="124px" size="mini" :model="rRIRDInfo" :rules="rRIRDFormRules" ref="rRIRDFormRef">
+				<div class="dialogTitleBox fRow">
+					<img class="mgR10" src="@/assets/edit.png" />
+					<span>选择人员</span>
+				</div>
+
+				<el-row :gutter="20">
+					<el-col :span="8">
+						<el-form-item prop="IDType" label="有效证件类型">
+							<el-select class="w100" v-model="rRIRDInfo.IDType" clearable>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.IDType" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="IDNum" label="有效证件号码">
+							<el-input v-model="rRIRDInfo.IDNum"><el-button slot="append" icon="el-icon-search" @click="eRRIDShow"></el-button></el-input>
+						</el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="name" label="姓名"><el-input v-model="rRIRDInfo.name"></el-input></el-form-item>
+					</el-col>
+				</el-row>
+
+				<div class="dialogTitleBox fRow">
+					<img class="mgR10" src="@/assets/edit.png" />
+					<span>劳动者信息</span>
+				</div>
+
+				<el-row :gutter="20">
+					<el-col :span="8">
+						<el-form-item prop="birthdayTs" label="出生日期">
+							<el-date-picker class="w100" v-model="rRIRDInfo.birthdayTs" type="date" value-format="timestamp" placeholder="选择日期" disabled></el-date-picker>
+						</el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="sex" label="性别">
+							<el-select class="w100" v-model="rRIRDInfo.sex" disabled>
+								<el-option label="请选择" value=""></el-option>
+								<el-option label="男" value="男"></el-option>
+								<el-option label="女" value="女"></el-option>
+							</el-select>
+						</el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="householdType" label="户口性质">
+							<el-select v-model="rRIRDInfo.householdType" disabled>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.householdType" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
+					</el-col>
+				</el-row>
+
+				<el-row :gutter="20">
+					<el-col :span="8">
+						<el-form-item prop="nation" label="民族">
+							<el-select v-model="rRIRDInfo.nation" disabled>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.nation" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="educationDegree" label="文化程度">
+							<el-select v-model="rRIRDInfo.educationDegree" disabled>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.educationDegree" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="administrativeDivision" label="行政区划"><el-input v-model="rRIRDInfo.administrativeDivision" disabled></el-input></el-form-item>
+					</el-col>
+				</el-row>
+
+				<el-row :gutter="20">
+					<el-col :span="16">
+						<el-form-item prop="householdLocation" label="户籍详细地址"><el-input v-model="rRIRDInfo.householdLocation" disabled></el-input></el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="siNum" label="社保号"><el-input v-model="rRIRDInfo.siNum" disabled></el-input></el-form-item>
+					</el-col>
+				</el-row>
+
+				<el-row :gutter="20">
+					<el-col :span="16">
+						<el-form-item prop="homeAddr" label="现住址"><el-input v-model="rRIRDInfo.homeAddr" disabled></el-input></el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="insuredDateTs" label="投保日期">
+							<el-date-picker class="w100" v-model="rRIRDInfo.insuredDateTs" type="date" value-format="timestamp" placeholder="选择日期" disabled></el-date-picker>
+						</el-form-item>
+					</el-col>
+				</el-row>
+
+				<el-row :gutter="20">
+					<el-col :span="8">
+						<el-form-item prop="postalCode" label="邮政编码"><el-input v-model="rRIRDInfo.postalCode" disabled></el-input></el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="employmentYearTs" label="参加工作年份">
+							<el-date-picker class="w100" v-model="rRIRDInfo.employmentYearTs" type="year" value-format="timestamp" placeholder="选择年份" disabled></el-date-picker>
+						</el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="nationality" label="国籍"><el-input v-model="rRIRDInfo.nationality" disabled></el-input></el-form-item>
+					</el-col>
+				</el-row>
+
+				<el-row :gutter="20">
+					<el-col :span="8">
+						<el-form-item prop="staffType" label="职业(工种)">
+							<el-select v-model="rRIRDInfo.staffType" disabled>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.staffType" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
+					</el-col>
+				</el-row>
+
+				<div class="dialogTitleBox fRow">
+					<img class="mgR10" src="@/assets/edit.png" />
+					<span>劳动用工信息</span>
+				</div>
+
+				<el-row :gutter="20">
+					<el-col :span="8">
+						<el-form-item prop="staffSort" label="职工类别">
+							<el-select class="w100" v-model="rRIRDInfo.staffSort" disabled>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.staffSort" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="laborContractSign" label="是否签订劳动合同">
+							<el-select v-model="rRIRDInfo.laborContractSign" disabled>
+								<el-option label="请选择" value=""></el-option>
+								<el-option label="是" value="是"></el-option>
+								<el-option label="否" value="否"></el-option>
+							</el-select>
+						</el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="reInsuredNum" label="续订次数"><el-input v-model="rRIRDInfo.reInsuredNum" disabled></el-input></el-form-item>
+					</el-col>
+				</el-row>
+
+				<el-row :gutter="20">
+					<el-col :span="8">
+						<el-form-item prop="employmentForm" label="用工形式">
+							<el-select class="w100" v-model="rRIRDInfo.employmentForm" disabled>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.employmentForm" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="recruitStartDateTs" label="用工起始日期">
+							<el-date-picker
+								class="w100"
+								v-model="rRIRDInfo.recruitStartDateTs"
+								type="date"
+								value-format="timestamp"
+								placeholder="选择日期"
+								disabled
+							></el-date-picker>
+						</el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="recruitEndDateTs" label="用工终止日期">
+							<el-date-picker class="w100" v-model="rRIRDInfo.recruitEndDateTs" type="date" value-format="timestamp" placeholder="选择日期" disabled></el-date-picker>
+						</el-form-item>
+					</el-col>
+				</el-row>
+
+				<el-row :gutter="20">
+					<el-col :span="8">
+						<el-form-item prop="laborContractType" label="合同期限类型">
+							<el-select class="w100" v-model="rRIRDInfo.laborContractType" disabled>
+								<el-option label="请选择" value=""></el-option>
+								<el-option v-for="(item, index) in commonOptions.laborContractType" :key="index" :label="item" :value="item"></el-option>
+							</el-select>
+						</el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="laborContractStartDateTs" label="劳动合同起始日期">
+							<el-date-picker
+								class="w100"
+								v-model="rRIRDInfo.laborContractStartDateTs"
+								type="date"
+								value-format="timestamp"
+								placeholder="选择日期"
+								disabled
+							></el-date-picker>
+						</el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="laborContractEndDateTs" label="劳动合同终止日期">
+							<el-date-picker
+								class="w100"
+								v-model="rRIRDInfo.laborContractEndDateTs"
+								type="date"
+								value-format="timestamp"
+								placeholder="选择日期"
+								disabled
+							></el-date-picker>
+						</el-form-item>
+					</el-col>
+				</el-row>
+
+				<el-row :gutter="20">
+					<el-col :span="8">
+						<el-form-item prop="hireStartDateTs" label="试用起始日期">
+							<el-date-picker class="w100" v-model="rRIRDInfo.hireStartDateTs" type="date" value-format="timestamp" placeholder="选择日期" disabled></el-date-picker>
+						</el-form-item>
+					</el-col>
+					<el-col :span="8">
+						<el-form-item prop="hireEndDateTs" label="试用终止日期">
+							<el-date-picker class="w100" v-model="rRIRDInfo.hireEndDateTs" type="date" value-format="timestamp" placeholder="选择日期" disabled></el-date-picker>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -704,7 +969,7 @@
 						</el-form-item>
 					</el-col>
 					<el-col :span="8">
-						<el-form-item prop="laborContractStatus" label="合同状态"><el-input v-model="rRIRDInfo.laborContractStatus"></el-input></el-form-item>
+						<el-form-item prop="laborContractStatus" label="合同状态"><el-input v-model="rRIRDInfo.laborContractStatus" disabled></el-input></el-form-item>
 					</el-col>
 				</el-row>
 
@@ -728,6 +993,9 @@ export default {
 	data() {
 		return {
 			// ======================== 公共 ========================
+			// ------------ 单位用工备案信息对话框 ------------
+			eRRIDV: false, //是否显示
+
 			// ------------ 等待中心审批对话框 ------------
 			wCDDV: false, //是否显示
 			wCDDInfo: [], //信息
@@ -905,6 +1173,20 @@ export default {
 						trigger: 'blur'
 					}
 				],
+				homeAddr: [
+					{
+						required: true,
+						message: '请输入现住址',
+						trigger: 'blur'
+					}
+				],
+				siNum: [
+					{
+						required: true,
+						message: '请输入社保号',
+						trigger: 'blur'
+					}
+				],
 				staffSort: [
 					{
 						required: true,
@@ -919,11 +1201,39 @@ export default {
 						trigger: 'change'
 					}
 				],
-				insuredRecordDate: [
+				insuredRecordDateTs: [
 					{
 						required: true,
-						message: '请输入备案日期',
-						trigger: 'blur'
+						message: '请选择备案日期',
+						trigger: 'change'
+					}
+				],
+				employmentForm: [
+					{
+						required: true,
+						message: '请选择用工形式',
+						trigger: 'change'
+					}
+				],
+				recruitStartDateTs: [
+					{
+						required: true,
+						message: '请选择用工起始日期',
+						trigger: 'change'
+					}
+				],
+				laborContractType: [
+					{
+						required: true,
+						message: '请选择合同期限类型',
+						trigger: 'change'
+					}
+				],
+				laborContractStartDateTs: [
+					{
+						required: true,
+						message: '请选择合同起始日期',
+						trigger: 'change'
 					}
 				]
 			}, //表单验证规则
@@ -933,9 +1243,10 @@ export default {
 			tRRIMDIDV: false, //是否显示
 			tRRIMDIDInfo: [], //信息
 
-			// ------------ 用工备案信息解除对话框 ------------
-			rRIRDV: false, //是否显示
-			rRIRDInfo: {
+			// ------------ 用工备案信息修改对话框 ------------
+			rRIMDV: false, //是否显示
+			rRIMDInfo: {
+				declareType: '', //申报类型
 				IDType: '', //证件类型
 				IDNum: '', //证件号码
 				name: '', //姓名
@@ -965,22 +1276,20 @@ export default {
 				recruitEndDate: '', //用工终止日期
 				recruitEndDateTs: '',
 				laborContractSign: '', //是否签订劳动合同
-				reInsuredNum: '', //续订次数
 				laborContractStatus: '', //劳动合同状态
 				laborContractType: '', //劳动合同期限类型
 				laborContractStartDate: '', //劳动合同起始日期
 				laborContractStartDateTs: '',
 				laborContractEndDate: '', //劳动合同终止日期
 				laborContractEndDateTs: '',
-				laborContractRelieveDate: '', //合同解除日期
-				laborContractRelieveDateTs: '',
-				laborContractRelieveCause: '', //合同解除原因
+				reInsuredNum: '', //续订次数
 				hireStartDate: '', //试用起始日期
 				hireStartDateTs: '',
 				hireEndDate: '', //试用终止日期
-				hireEndDateTs: ''
+				hireEndDateTs: '',
+				subEntName: '' //二级单位名称
 			}, //信息
-			rRIRDFormRules: {
+			rRIMDFormRules: {
 				IDType: [
 					{
 						required: true,
@@ -1016,10 +1325,159 @@ export default {
 						trigger: 'change'
 					}
 				],
+				householdType: [
+					{
+						required: true,
+						message: '请选择户口性质',
+						trigger: 'change'
+					}
+				],
+				nation: [
+					{
+						required: true,
+						message: '请选择民族',
+						trigger: 'blur'
+					}
+				],
+				administrativeDivision: [
+					{
+						required: true,
+						message: '请输入行政区划',
+						trigger: 'blur'
+					}
+				],
 				siNum: [
 					{
 						required: true,
 						message: '请输入社保号',
+						trigger: 'blur'
+					}
+				],
+				homeAddr: [
+					{
+						required: true,
+						message: '请输入现住址',
+						trigger: 'blur'
+					}
+				],
+				staffSort: [
+					{
+						required: true,
+						message: '请选择职工类别',
+						trigger: 'change'
+					}
+				],
+				laborContractSign: [
+					{
+						required: true,
+						message: '请选择是否签订劳动合同',
+						trigger: 'change'
+					}
+				],
+				insuredRecordDateTs: [
+					{
+						required: true,
+						message: '请选择备案日期',
+						trigger: 'change'
+					}
+				],
+				employmentForm: [
+					{
+						required: true,
+						message: '请选择用工形式',
+						trigger: 'change'
+					}
+				],
+				recruitStartDateTs: [
+					{
+						required: true,
+						message: '请选择用工起始日期',
+						trigger: 'change'
+					}
+				],
+				laborContractType: [
+					{
+						required: true,
+						message: '请选择合同期限类型',
+						trigger: 'change'
+					}
+				],
+				laborContractStartDateTs: [
+					{
+						required: true,
+						message: '请选择合同起始日期',
+						trigger: 'change'
+					}
+				]
+			}, //表单验证规则
+
+			// ------------ 用工备案信息解除对话框 ------------
+			rRIRDV: false, //是否显示
+			rRIRDInfo: {
+				declareType: '', //申报类型
+				IDType: '', //证件类型
+				IDNum: '', //证件号码
+				name: '', //姓名
+				sex: '', //性别
+				nation: '', //民族
+				nationality: '', //国籍
+				birthday: '', //出生日期
+				birthdayTs: '',
+				postalCode: '', //邮政编码
+				administrativeDivision: '', //行政区划
+				homeAddr: '', //家庭住址
+				householdType: '', //户口性质
+				householdLocation: '', //户口所在地
+				educationDegree: '', //文化程度
+				staffSort: '', //职工类别
+				staffType: '', //职业（工种）
+				employmentForm: '', //用工形式
+				siNum: '', //社保号
+				insuredDate: '', //投保日期
+				insuredDateTs: '',
+				insuredRecordDate: '', //备案日期
+				insuredRecordDateTs: '',
+				employmentYear: '', //参加工作年份
+				employmentYearTs: '',
+				recruitStartDate: '', //用工起始日期
+				recruitStartDateTs: '',
+				recruitEndDate: '', //用工终止日期
+				recruitEndDateTs: '',
+				laborContractSign: '', //是否签订劳动合同
+				reInsuredNum: '', //续订次数
+				laborContractStatus: '解除', //劳动合同状态
+				laborContractType: '', //劳动合同期限类型
+				laborContractStartDate: '', //劳动合同起始日期
+				laborContractStartDateTs: '',
+				laborContractEndDate: '', //劳动合同终止日期
+				laborContractEndDateTs: '',
+				laborContractRelieveDate: '', //合同解除日期
+				laborContractRelieveDateTs: '',
+				laborContractRelieveCause: '', //合同解除原因
+				hireStartDate: '', //试用起始日期
+				hireStartDateTs: '',
+				hireEndDate: '', //试用终止日期
+				hireEndDateTs: ''
+			}, //信息
+			rRIRDFormRules: {
+				IDType: [
+					{
+						required: true,
+						message: '请选择证件类型',
+						trigger: 'change'
+					}
+				],
+				IDNum: [
+					{
+						required: true,
+						message: '请输入证件号码',
+						trigger: 'blur'
+					}
+				],
+				name: [
+					{
+						required: true,
+						message: '请输入姓名',
 						trigger: 'blur'
 					}
 				],
@@ -1049,6 +1507,7 @@ export default {
 	},
 	computed: {
 		...mapState({
+			entInfo: state => state.entInfo, //企业信息
 			commonOptions: state => state.commonOptions //公共选项
 		})
 	},
@@ -1131,6 +1590,82 @@ export default {
 		},
 
 		// ======================== 劳动用工综合管理 ========================
+		// ------------ 用工备案信息修改对话框 ------------
+		rRIMDInfo: {
+			handler(e) {
+				// 出生日期
+				if (e.birthdayTs) {
+					this.rRIMDInfo.birthday = utils.getDateString(e.birthdayTs);
+				} else {
+					this.rRIMDInfo.birthday = '';
+				}
+
+				// 投保日期
+				if (e.insuredDateTs) {
+					this.rRIMDInfo.insuredDate = utils.getDateString(e.insuredDateTs);
+				} else {
+					this.rRIMDInfo.insuredDate = '';
+				}
+
+				// 备案日期
+				if (e.insuredRecordDateTs) {
+					this.rRIMDInfo.insuredRecordDate = utils.getDateString(e.insuredRecordDateTs);
+				} else {
+					this.rRIMDInfo.insuredRecordDate = '';
+				}
+
+				// 参加工作年份
+				if (e.employmentYearTs) {
+					this.rRIMDInfo.employmentYear = utils.getDateStringIII(e.employmentYearTs);
+				} else {
+					this.rRIMDInfo.employmentYear = '';
+				}
+
+				// 用工起始日期
+				if (e.recruitStartDateTs) {
+					this.rRIMDInfo.recruitStartDate = utils.getDateString(e.recruitStartDateTs);
+				} else {
+					this.rRIMDInfo.recruitStartDate = '';
+				}
+
+				// 用工终止日期
+				if (e.recruitEndDateTs) {
+					this.rRIMDInfo.recruitEndDate = utils.getDateString(e.recruitEndDateTs);
+				} else {
+					this.rRIMDInfo.recruitEndDate = '';
+				}
+
+				// 劳动合同起始日期
+				if (e.laborContractStartDateTs) {
+					this.rRIMDInfo.laborContractStartDate = utils.getDateString(e.laborContractStartDateTs);
+				} else {
+					this.rRIMDInfo.laborContractStartDate = '';
+				}
+
+				// 劳动合同终止日期
+				if (e.laborContractEndDateTs) {
+					this.rRIMDInfo.laborContractEndDate = utils.getDateString(e.laborContractEndDateTs);
+				} else {
+					this.rRIMDInfo.laborContractEndDate = '';
+				}
+
+				// 试用起始日期
+				if (e.hireStartDateTs) {
+					this.rRIMDInfo.hireStartDate = utils.getDateString(e.hireStartDateTs);
+				} else {
+					this.rRIMDInfo.hireStartDate = '';
+				}
+
+				// 试用终止日期
+				if (e.hireEndDateTs) {
+					this.rRIMDInfo.hireEndDate = utils.getDateString(e.hireEndDateTs);
+				} else {
+					this.rRIMDInfo.hireEndDate = '';
+				}
+			},
+			deep: true
+		},
+
 		// ------------ 用工备案信息解除对话框 ------------
 		rRIRDInfo: {
 			handler(e) {
@@ -1221,6 +1756,41 @@ export default {
 			this.$message.info('此功能暂未开放');
 		},
 
+		// ------------ 单位用工备案信息对话框 ------------
+		// 显示
+		eRRIDShow() {
+			this.eRRIDV = true;
+		},
+		// 选择单位用工备案信息
+		eRRIDTbRowDbC(row) {
+			row.birthdayTs = utils.getTimestamp(row.birthday);
+			row.insuredDateTs = utils.getTimestamp(row.insuredDate);
+			row.insuredRecordDateTs = utils.getTimestamp(row.insuredRecordDate);
+			row.employmentYearTs = utils.getTimestampIII(row.employmentYear);
+			row.recruitStartDateTs = utils.getTimestamp(row.recruitStartDate);
+			row.recruitEndDateTs = utils.getTimestamp(row.recruitEndDate);
+			row.laborContractStartDateTs = utils.getTimestamp(row.laborContractStartDate);
+			row.laborContractEndDateTs = utils.getTimestamp(row.laborContractEndDate);
+			row.laborContractRelieveDateTs = utils.getTimestamp(row.laborContractRelieveDate);
+			row.hireStartDateTs = utils.getTimestamp(row.hireStartDate);
+			row.hireEndDateTs = utils.getTimestamp(row.hireEndDate);
+
+			if (this.rRIMDV) {
+				this.rRIMDInfo = utils.deepClone(row);
+				this.rRIMDInfo.declareType = '修改';
+			}
+			if (this.rRIRDV) {
+				this.rRIRDInfo = utils.deepClone(row);
+				this.rRIRDInfo.declareType = '解除';
+			}
+
+			this.eRRIDV = false;
+		},
+		// 关闭事件
+		eRRIDClose() {
+			this.eRRIDV = false;
+		},
+
 		// ------------ 等待中心审批对话框 ------------
 		// 关闭事件
 		wCDDClose() {
@@ -1232,10 +1802,6 @@ export default {
 		// 显示
 		tRRDIDVShow() {
 			this.tRRDIDV = true;
-		},
-		// 新增用工备案按钮
-		tRRDIDAddRecruit() {
-			this.tRIDV = true;
 		},
 		// 申报提交按钮
 		tRRDIDDeclareSubmit() {
@@ -1254,6 +1820,10 @@ export default {
 		},
 
 		// ------------ 录入备案信息对话框 ------------
+		// 显示
+		tRIDShow() {
+			this.tRIDV = true;
+		},
 		// 保存按钮
 		tRIDSave() {
 			this.$refs.tRIDFormRef.validate(valid => {
@@ -1286,24 +1856,58 @@ export default {
 		},
 		// 续签解除终止操作入口
 		tRRIMDIDOperatEnter(e) {
-			if (e == 3) {
+			if (e == 0) {
+				this.rRIMDV = true;
+			} else if (e == 3) {
 				this.rRIRDV = true;
 			}
 		},
 		// 申报提交按钮
 		tRRIMDIDDeclareSubmit() {
 			if (this.tRRIMDIDInfo.length == 0) {
-				this.$message.warning('没有录入人员信息，不能提交中心审批');
+				this.$message.warning('当前未录入人员信息，不能提交中心审批');
 			} else {
+				let modifyArray = this.tRRIMDIDInfo.filter(item => item.declareType == '修改');
+				let relieveArray = this.tRRIMDIDInfo.filter(item => item.declareType == '解除');
+
+				if (modifyArray.length > 0) {
+					this.$store.dispatch('modifyEntStaffInfo', modifyArray);
+				}
+				if (relieveArray.length > 0) {
+					this.$store.dispatch('entMinusStaff', relieveArray);
+				}
+
 				this.wCDDInfo = this.tRRIMDIDInfo;
 				this.wCDDV = true;
-				this.$store.dispatch('entMinusStaff', this.tRRIMDIDInfo);
-				this.$message.success('提交成功');
 			}
 		},
 		// 关闭事件
 		tRRIMDIDClose() {
 			this.tRRIMDIDV = false;
+		},
+
+		// ------------ 用工备案信息修改对话框 ------------
+		// 保存按钮
+		rRIMDSave() {
+			this.$refs.rRIMDFormRef.validate(valid => {
+				if (valid) {
+					this.tRRIMDIDInfo.push(utils.deepClone(this.rRIMDInfo));
+					this.rRIMDV = false;
+					this.$refs.rRIMDFormRef.resetFields();
+					this.$message.success('保存成功');
+				} else {
+					this.$message.warning('请完善所有【必填】信息');
+				}
+			});
+		},
+		// 重置按钮
+		rRIMDReset() {
+			this.$refs.rRIMDFormRef.resetFields();
+			this.$message.success('输入信息已重置');
+		},
+		// 关闭事件
+		rRIMDClose() {
+			this.rRIMDV = false;
 		},
 
 		// ------------ 用工备案信息解除对话框 ------------

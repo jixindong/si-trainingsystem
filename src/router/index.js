@@ -133,8 +133,8 @@ const router = new VueRouter({
 	]
 });
 
-// 全局后置钩子
-router.afterEach((to) => {
+// 全局前置守卫
+router.beforeEach((to, from, next) => {
 	// 设置 title
 	if (to.meta.title) {
 		document.title = to.meta.title;
@@ -150,7 +150,11 @@ router.afterEach((to) => {
 		favicon.href = './favicon.ico';
 	}
 
-	// 自动回顶
+	next();
+});
+
+// 全局后置钩子
+router.afterEach(() => {
 	window.scrollTo(0, 0);
 });
 

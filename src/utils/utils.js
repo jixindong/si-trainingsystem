@@ -46,11 +46,50 @@ function getDateStringIII(timestamp) {
 	let date = new Date(timestamp);
 	return date.getFullYear() + '年';
 }
+// 获取日期时间戳 年月日
+function getTimestamp(dateString) {
+	if (!dateString) {
+		return '';
+	} else {
+		let dateYC = dateString.indexOf('年'); //年字索引
+		let dateMC = dateString.indexOf('月'); //月字索引
+		let dateDC = dateString.indexOf('日'); //日字索引
+		let dateY = dateString.slice(0, dateYC); //年
+		let dateM = dateString.slice(dateYC + 1, dateMC).length == 2 ? dateString.slice(dateYC + 1, dateMC) : '0' + dateString.slice(dateYC + 1, dateMC); //月
+		let dateD = dateString.slice(dateMC + 1, dateDC).length == 2 ? dateString.slice(dateMC + 1, dateDC) : '0' + dateString.slice(dateMC + 1, dateDC); //日
+		return new Date(dateY + '/' + dateM + '/' + dateD + ' 00:00:00').getTime(); //时间戳
+	}
+}
+// 获取日期时间戳 年月
+function getTimestampII(dateString) {
+	if (!dateString) {
+		return '';
+	} else {
+		let dateYC = dateString.indexOf('年'); //年字索引
+		let dateMC = dateString.indexOf('月'); //月字索引
+		let dateY = dateString.slice(0, dateYC); //年
+		let dateM = dateString.slice(dateYC + 1, dateMC).length == 2 ? dateString.slice(dateYC + 1, dateMC) : '0' + dateString.slice(dateYC + 1, dateMC); //月
+		return new Date(dateY + '/' + dateM + '/' + '01' + ' 00:00:00').getTime(); //时间戳
+	}
+}
+// 获取日期时间戳 年
+function getTimestampIII(dateString) {
+	if (!dateString) {
+		return '';
+	} else {
+		let dateYC = dateString.indexOf('年'); //年字索引
+		let dateY = dateString.slice(0, dateYC); //年
+		return new Date(dateY + '/' + '01' + '/' + '01' + ' 00:00:00').getTime(); //时间戳
+	}
+}
 
 export {
 	deepClone,
 	getCurrentTime,
 	getDateString,
 	getDateStringII,
-	getDateStringIII
+	getDateStringIII,
+	getTimestamp,
+	getTimestampII,
+	getTimestampIII
 };

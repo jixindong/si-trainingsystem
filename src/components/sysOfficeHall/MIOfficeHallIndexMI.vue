@@ -85,7 +85,7 @@
 
 		<!-- ======================== 社保缴费(网上缴费) ======================== -->
 		<!-- 选择缴费年月对话框 -->
-		<el-dialog title="选择缴费年月" width="60%" :visible.sync="cCDDV" :before-close="cCDDClose">
+		<el-dialog title="选择缴费年月" width="1024px" :visible.sync="cCDDV" :before-close="cCDDClose">
 			<el-form class="dialogForm colorBlack fs24" label-width="30px" size="mini">
 				<div class="mgB10">
 					<span>您单位已经缴费至：</span>
@@ -111,7 +111,7 @@
 		<!-- 选择缴费年月对话框 end -->
 
 		<!-- 等待网银支付对话框 -->
-		<el-dialog title="等待网银支付" width="60%" :visible.sync="wOBPDV" :before-close="wOBPDClose">
+		<el-dialog title="等待网银支付" width="1024px" :visible.sync="wOBPDV" :before-close="wOBPDClose">
 			<div class="fs16">
 				<div>
 					<span class="mgR10">订单号：</span>
@@ -140,7 +140,7 @@
 		<!-- 等待网银支付对话框 end -->
 
 		<!-- 缴费记账报告对话框 -->
-		<el-dialog :title="cTRDTitle" width="60%" :visible.sync="cTRDV" :before-close="cTRDClose">
+		<el-dialog :title="cTRDTitle" width="1024px" :visible.sync="cTRDV" :before-close="cTRDClose">
 			<el-form class="dialogForm">
 				<div class="dialogTitleBox fRow">
 					<img class="mgR10" src="@/assets/edit.png" />
@@ -191,7 +191,7 @@
 		<!-- 缴费记账报告对话框 end -->
 
 		<!-- 维护发票邮寄地址对话框 -->
-		<el-dialog title="维护发票邮寄地址" width="60%" :visible.sync="pIMADV" :before-close="pIMADClose">
+		<el-dialog title="维护发票邮寄地址" width="1024px" :visible.sync="pIMADV" :before-close="pIMADClose">
 			<el-form class="dialogForm" label-width="100px" size="mini" :model="entInfo.entInvoiceMailingAddr" :rules="pIMADFormRules" ref="pIMADFormRef">
 				<div class="dialogTitleBox fRow">
 					<img class="mgR10" src="@/assets/edit.png" />
