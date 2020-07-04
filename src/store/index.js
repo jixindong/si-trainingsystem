@@ -501,54 +501,6 @@ const store = new Vuex.Store({
 				'无固定期限',
 				'以完成一定任务为期限'
 			]
-		},
-		// 试题
-		examQuestions:[
-			{
-				id:1,
-				title:'劳动关系增员'
-			},
-			{
-				id:2,
-				title:'劳动关系减员'
-			},
-			{
-				id:3,
-				title:'社会保障增员'
-			},
-			{
-				id:4,
-				title:'社会保障减员'
-			},
-			{
-				id:5,
-				title:'缴费基数申报'
-			},
-			{
-				id:6,
-				title:'社保缴费(网上缴费)'
-			}
-		],
-		// 答题记录
-		answerRecords:{
-			// 新增用工备案
-			addRecruitRecords:[],
-			// 解除用工备案
-			relieveRecruitRecords:[],
-			// 在职增员
-			addStaff:[],
-			// 在职减员
-			minusStaff:[],
-			// 录入缴费基数
-			typeChargeBase:[],
-			// 发票邮寄地址
-			invoiceMailingAddr:{
-				receiverName: '',
-				receiverTel: '',
-				receiverAddr: ''
-			},
-			// 社保缴费
-			siCharge:[]
 		}
 	},
 	getters: {},
@@ -560,9 +512,9 @@ const store = new Vuex.Store({
 		},
 		// 更新企业职工信息 职工数量
 		updateEntStaffInfo(state, us) {
-			let isAddStaff = false;//是否增员
-			let isMinusStaff = false;//是否减员
-			
+			let isAddStaff = false; //是否增员
+			let isMinusStaff = false; //是否减员
+
 			us.forEach(e => {
 				if (e.addSICause) {
 					isAddStaff = true;
@@ -576,11 +528,11 @@ const store = new Vuex.Store({
 					});
 				}
 			});
-			
-			if(isAddStaff){
+
+			if (isAddStaff) {
 				state.entInfo.entAddStaff = [];
 			}
-			if(isMinusStaff){
+			if (isMinusStaff) {
 				state.entInfo.entMinusStaff = [];
 			}
 		},
@@ -627,48 +579,6 @@ const store = new Vuex.Store({
 		// 企业在职减员
 		entMinusStaff(state, ms) {
 			state.entInfo.entMinusStaff = ms;
-		},
-		
-		// ------------------------ 答题记录 ------------------------
-		// 新增用工备案
-		aRAddRecruitRecords(state,ar){
-			ar.forEach(e => {
-				state.answerRecords.addRecruitRecords.push(e);
-			});
-		},
-		// 解除用工备案
-		aRRelieveRecruitRecords(state,rr){
-			rr.forEach(e => {
-				state.answerRecords.relieveRecruitRecords.push(e);
-			});
-		},
-		// 在职增员
-		aRAddStaff(state,as){
-			as.forEach(e => {
-				state.answerRecords.addStaff.push(e);
-			});
-		},
-		// 在职减员
-		aRMinusStaff(state,ms){
-			ms.forEach(e => {
-				state.answerRecords.minusStaff.push(e);
-			});
-		},
-		// 录入缴费基数
-		aRTypeChargeBase(state,cb){
-			cb.forEach(e => {
-				state.answerRecords.typeChargeBase.push(e);
-			});
-		},
-		// 修改发票邮寄地址
-		aRModifyIMA(state,ia){
-			state.answerRecords.invoiceMailingAddr = ia;
-		},
-		// 社保缴费
-		aRSiCharge(state,sc){
-			sc.forEach(e => {
-				state.answerRecords.siCharge.push(e);
-			});
 		}
 	},
 	actions: {
@@ -708,36 +618,6 @@ const store = new Vuex.Store({
 		// 企业在职减员
 		entMinusStaff(context, ms) {
 			context.commit('entMinusStaff', ms);
-		},
-		
-		// ------------------------ 答题记录 ------------------------
-		// 新增用工备案
-		aRAddRecruitRecords({commit},ar){
-			commit('aRAddRecruitRecords',ar);
-		},
-		// 解除用工备案
-		aRRelieveRecruitRecords({commit},rr){
-			commit('aRRelieveRecruitRecords',rr);
-		},
-		// 在职增员
-		aRAddStaff({commit},as){
-			commit('aRAddStaff',as);
-		},
-		// 在职减员
-		aRMinusStaff({commit},ms){
-			commit('aRMinusStaff',ms);
-		},
-		// 录入缴费基数
-		aRTypeChargeBase({commit},cb){
-			commit('aRTypeChargeBase',cb);
-		},
-		// 修改发票邮寄地址
-		aRModifyIMA({commit},ia){
-			commit('aRModifyIMA',ia);
-		},
-		// 社保缴费
-		aRSiCharge({commit},sc){
-			commit('aRSiCharge',sc);
 		}
 	},
 	plugins: [persistedState({

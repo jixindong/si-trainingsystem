@@ -1181,13 +1181,6 @@ export default {
 						trigger: 'blur'
 					}
 				],
-				siNum: [
-					{
-						required: true,
-						message: '请输入社保号',
-						trigger: 'blur'
-					}
-				],
 				staffSort: [
 					{
 						required: true,
@@ -1813,7 +1806,6 @@ export default {
 				this.wCDDV = true;
 				this.tRRDIDV = false;
 				this.$store.dispatch('entAddStaff', this.tRRDIDInfo);
-				this.$store.dispatch('aRAddRecruitRecords',this.tRRDIDInfo);
 			}
 		},
 		// 关闭事件
@@ -1830,6 +1822,9 @@ export default {
 		tRIDSave() {
 			this.$refs.tRIDFormRef.validate(valid => {
 				if (valid) {
+					if (!this.tRIDInfo.siNum) {
+						this.tRIDInfo.siNum = this.tRIDInfo.IDNum;
+					}
 					this.tRRDIDInfo.push(utils.deepClone(this.tRIDInfo));
 					this.tRIDV = false;
 					this.$refs.tRIDFormRef.resetFields();
@@ -1877,7 +1872,6 @@ export default {
 				}
 				if (relieveArray.length > 0) {
 					this.$store.dispatch('entMinusStaff', relieveArray);
-					this.$store.dispatch('aRRelieveRecruitRecords',relieveArray);
 				}
 
 				this.wCDDInfo = this.tRRIMDIDInfo;
