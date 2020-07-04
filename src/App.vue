@@ -18,7 +18,7 @@ export default {
 	},
 	watch: {
 		isCompleted() {
-			this.sendMessage('entInfo', { entInfo: this.entInfo });
+			this.sendMessage('answer', { answer: this.entInfo });
 		}
 	},
 	methods: {
