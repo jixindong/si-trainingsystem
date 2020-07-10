@@ -2,14 +2,14 @@
 	<div class="oHIInfo fColumn">
 		<!-- 顶部 -->
 		<div class="hd">
-			<img src="../../assets/company.png" />
+			<img src="@/assets/company.png" />
 
 			<div class="entMsg fColumn">
 				<div>欢迎您，{{ entName }}！</div>
 				<div class="functionBox fRow">
 					<!-- 未提交申报 -->
 					<div class="functionItem fRow">
-						<img src="../../assets/unreadDoc.png" />
+						<img src="@/assets/unreadDoc.png" />
 						<div class="tipText fColumn">
 							<span class="sort">1条</span>
 							<span>未提交申报</span>
@@ -18,7 +18,7 @@
 
 					<!-- 正在审核申报 -->
 					<div class="functionItem fRow">
-						<img src="../../assets/readDoc.png" />
+						<img src="@/assets/readDoc.png" />
 						<div class="tipText fColumn">
 							<span class="sortII">0条</span>
 							<span>正在审核申报</span>
@@ -27,7 +27,7 @@
 
 					<!-- 审核完成未读申报 -->
 					<div class="functionItem fRow">
-						<img src="../../assets/docList.png" />
+						<img src="@/assets/docList.png" />
 						<div class="tipText fColumn">
 							<span class="sortIII">2条</span>
 							<span>审核完成未读申报</span>
@@ -54,9 +54,9 @@
 			<!-- 通知公告 -->
 			<div class="msgBox mgR10">
 				<div class="titleBox fRow">
-					<img src="../../assets/note.png" />
+					<img src="@/assets/note.png" />
 					<span>通知公告</span>
-					<img class="hover" src="../../assets/more.png" />
+					<img class="hover" src="@/assets/more.png" />
 				</div>
 				<div class="contentBox">
 					<div class="msgItem fRow" v-for="(item, index) in notice" :key="index">
@@ -69,10 +69,10 @@
 			<!-- 待办事项 -->
 			<div class="msgBox">
 				<div class="titleBox fRow">
-					<img src="../../assets/teacup.png" />
+					<img src="@/assets/teacup.png" />
 					<span>待办事项</span>
-					<img class="hover" src="../../assets/refresh.png" />
-					<img class="hover" src="../../assets/more.png" />
+					<img class="hover" src="@/assets/refresh.png" />
+					<img class="hover" src="@/assets/more.png" />
 				</div>
 				<div class="contentBox">
 					<div class="msgItem fRow" v-for="(item, index) in backlog" :key="index">
@@ -86,7 +86,7 @@
 		<!-- 底部 -->
 		<div class="ft fColumn">
 			<div class="titleBox fRow">
-				<img src="../../assets/putin.png" />
+				<img src="@/assets/putin.png" />
 				<span>我的功能</span>
 				<i class="el-icon-s-tools hover"></i>
 			</div>

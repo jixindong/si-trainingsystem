@@ -20,7 +20,7 @@ const router = new VueRouter({
 		//社保系统登录页面
 		{
 			path: '/sILogin',
-			component: () => import('../views/SILogin.vue'),
+			component: () => import('@/views/sysLogin/SILogin'),
 			meta: {
 				title: '单位网上服务 社保系统登录'
 			}
@@ -28,7 +28,7 @@ const router = new VueRouter({
 		//医保系统登录页面
 		{
 			path: '/mILogin',
-			component: () => import('../views/MILogin.vue'),
+			component: () => import('@/views/sysLogin/MILogin'),
 			meta: {
 				title: '单位网上服务 医保系统登录'
 			}
@@ -37,18 +37,18 @@ const router = new VueRouter({
 		{
 			path: '/sIOfficeHall',
 			redirect: '/sIOfficeHall/index',
-			component: () => import('../views/SIOfficeHall.vue'),
+			component: () => import('@/views/sysOfficeHall/SIOfficeHall'),
 			children: [
 				// 社保办事大厅页面 首页组件
 				{
 					path: '/sIOfficeHall/index',
 					redirect: '/sIOfficeHall/index/info',
-					component: () => import('../components/sysOfficeHall/SIOfficeHallIndex.vue'),
+					component: () => import('@/views/sysOfficeHall/components/SIOfficeHallIndex'),
 					children: [
 						// 社保办事大厅页面 首页组件 概况信息组件
 						{
 							path: '/sIOfficeHall/index/info',
-							component: () => import('../components/sysOfficeHall/SIOfficeHallIndexInfo.vue'),
+							component: () => import('@/views/sysOfficeHall/components/SIOfficeHallIndexInfo'),
 							meta: {
 								title: '社保办事大厅 概况信息'
 							}
@@ -56,7 +56,7 @@ const router = new VueRouter({
 						// 社保办事大厅页面 首页组件 社会保险组件
 						{
 							path: '/sIOfficeHall/index/sI',
-							component: () => import('../components/sysOfficeHall/SIOfficeHallIndexSI.vue'),
+							component: () => import('@/views/sysOfficeHall/components/SIOfficeHallIndexSI'),
 							meta: {
 								title: '社保办事大厅 社会保险'
 							}
@@ -64,7 +64,7 @@ const router = new VueRouter({
 						// 社保办事大厅页面 首页组件 劳动关系组件
 						{
 							path: '/sIOfficeHall/index/lR',
-							component: () => import('../components/sysOfficeHall/SIOfficeHallIndexLR.vue'),
+							component: () => import('@/views/sysOfficeHall/components/SIOfficeHallIndexLR'),
 							meta: {
 								title: '社保办事大厅 劳动关系'
 							}
@@ -74,7 +74,7 @@ const router = new VueRouter({
 				// 社保办事大厅页面 信息查询组件
 				{
 					path: '/sIOfficeHall/queryInfo',
-					component: () => import('../components/sysOfficeHall/SIOfficeHallQueryInfo.vue'),
+					component: () => import('@/views/sysOfficeHall/components/SIOfficeHallQueryInfo'),
 					meta: {
 						title: '社保办事大厅 信息查询'
 					}
@@ -85,18 +85,18 @@ const router = new VueRouter({
 		{
 			path: '/mIOfficeHall',
 			redirect: '/mIOfficeHall/index',
-			component: () => import('../views/MIOfficeHall.vue'),
+			component: () => import('@/views/sysOfficeHall/MIOfficeHall'),
 			children: [
 				// 医保办事大厅页面 首页组件
 				{
 					path: '/mIOfficeHall/index',
 					redirect: '/mIOfficeHall/index/info',
-					component: () => import('../components/sysOfficeHall/MIOfficeHallIndex.vue'),
+					component: () => import('@/views/sysOfficeHall/components/MIOfficeHallIndex'),
 					children: [
 						// 医保办事大厅页面 首页组件 概况信息组件
 						{
 							path: '/mIOfficeHall/index/info',
-							component: () => import('../components/sysOfficeHall/MIOfficeHallIndexInfo.vue'),
+							component: () => import('@/views/sysOfficeHall/components/MIOfficeHallIndexInfo'),
 							meta: {
 								title: '医保办事大厅 概况信息'
 							}
@@ -104,7 +104,7 @@ const router = new VueRouter({
 						// 医保办事大厅页面 首页组件 医疗保险组件
 						{
 							path: '/mIOfficeHall/index/mI',
-							component: () => import('../components/sysOfficeHall/MIOfficeHallIndexMI.vue'),
+							component: () => import('@/views/sysOfficeHall/components/MIOfficeHallIndexMI'),
 							meta: {
 								title: '医保办事大厅 医疗保险'
 							}
@@ -114,7 +114,7 @@ const router = new VueRouter({
 				// 医保办事大厅页面 信息查询组件
 				{
 					path: '/mIOfficeHall/queryInfo',
-					component: () => import('../components/sysOfficeHall/MIOfficeHallQueryInfo.vue'),
+					component: () => import('@/views/sysOfficeHall/components/MIOfficeHallQueryInfo'),
 					meta: {
 						title: '医保办事大厅 信息查询'
 					}
@@ -124,10 +124,10 @@ const router = new VueRouter({
 		//404页面
 		{
 			path: '*',
-			component: () => import('../views/Error.vue'),
+			component: () => import('@/views/Error'),
 			meta: {
 				title: '404',
-				favicon: require('../assets/404.png')
+				favicon: require('@/assets/404.png')
 			}
 		}
 	]

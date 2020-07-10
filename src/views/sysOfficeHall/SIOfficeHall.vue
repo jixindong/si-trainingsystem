@@ -6,8 +6,8 @@
 
 		<!-- 办事大厅tab切换 -->
 		<div class="oHTab">
-			<router-link class="oHLink hover" to="/mIOfficeHall/index">首页</router-link>
-			<router-link class="oHLink hover" to="/mIOfficeHall/queryInfo">信息查询</router-link>
+			<router-link class="oHLink hover" to="/sIOfficeHall/index">首页</router-link>
+			<router-link class="oHLink hover" to="/sIOfficeHall/queryInfo">信息查询</router-link>
 		</div>
 		<!-- 办事大厅tab切换 end -->
 
@@ -19,9 +19,9 @@
 
 <script>
 export default {
-	name: 'MIOfficeHall',
+	name: 'SIOfficeHall',
 	components: {
-		SysOfficeHallHd: () => import('../components/sysOfficeHall/SysOfficeHallHd.vue') //系统办事大厅顶部
+		SysOfficeHallHd: () => import('./components/SysOfficeHallHd.vue') //系统办事大厅顶部
 	}
 };
 </script>

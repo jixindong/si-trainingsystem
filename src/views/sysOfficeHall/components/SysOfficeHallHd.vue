@@ -1,8 +1,8 @@
 <template>
 	<div class="sysOfficeHallHd fRow">
 		<!-- logo -->
-		<img src="../../assets/sysOfficeHallHdSILogo.png" v-if="currentSign == 's'" />
-		<img src="../../assets/sysOfficeHallHdMILogo.png" v-if="currentSign == 'm'" />
+		<img src="@/assets/sysOfficeHallHdSILogo.png" v-if="currentSign == 's'" />
+		<img src="@/assets/sysOfficeHallHdMILogo.png" v-if="currentSign == 'm'" />
 		<!-- logo end -->
 
 		<!-- 账号设置 下拉菜单 -->
@@ -253,7 +253,7 @@ export default {
 	padding: 0 90px 0 50px;
 	min-width: 1200px;
 	height: 64px;
-	background: url(../../assets/sysOfficeHallHdBg.png) repeat-x;
+	background: url(../../../assets/sysOfficeHallHdBg.png) repeat-x;
 	.accountSettingsBtn {
 		color: #fff;
 		outline: 0 none;

@@ -11,7 +11,7 @@
 				<div class="subtitle">验证码：</div>
 				<div class="vCodeBox">
 					<input type="text" name="iVCode" maxlength="4" v-model="iVCode" />
-					<img class="vCodeImg" src="../../assets/verificationCode.png" />
+					<img class="vCodeImg" src="@/assets/verificationCode.png" />
 				</div>
 				<div class="loginBtn hover" @click="login()">登录</div>
 			</div>
@@ -24,7 +24,7 @@
 			<div class="msgBox fColumn">
 				<div class="titleBox fRow">
 					<div class="title fRow">
-						<img src="../../assets/notice.png" />
+						<img src="@/assets/notice.png" />
 						<span>通知公告</span>
 					</div>
 					<span class="more hover">更多>></span>
@@ -41,7 +41,7 @@
 			<div class="msgBox fColumn">
 				<div class="titleBox fRow">
 					<div class="title fRow">
-						<img src="../../assets/download.png" />
+						<img src="@/assets/download.png" />
 						<span>常用下载</span>
 					</div>
 					<span class="more hover">更多>></span>
@@ -58,7 +58,7 @@
 			<div class="msgBox fColumn">
 				<div class="titleBox fRow">
 					<div class="title fRow">
-						<img src="../../assets/repair.png" />
+						<img src="@/assets/repair.png" />
 						<span>常见问题</span>
 					</div>
 					<span class="more hover">更多>></span>
@@ -172,7 +172,7 @@ export default {
 		width: 984px;
 		min-width: 984px;
 		height: 420px;
-		background: url(../../assets/sysLoginImg.png) center/cover no-repeat;
+		background: url(../../../assets/sysLoginImg.png) center/cover no-repeat;
 		box-shadow: 0 1px 3px #ccc;
 		.loginBox {
 			position: relative;

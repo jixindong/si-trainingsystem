@@ -6,7 +6,7 @@
 
 		<div class="container">
 			<!-- 系统登录banner -->
-			<div class="sysLoginBanner"><img src="../assets/sysLoginSILogo.png" /></div>
+			<div class="sysLoginBanner"><img src="@/assets/sysLoginSILogo.png" /></div>
 			<!-- 系统登录banner end -->
 
 			<!-- 系统登录主体 -->
@@ -24,9 +24,9 @@
 export default {
 	name: 'SILogin',
 	components: {
-		SysLoginHdBar: () => import('../components/sysLogin/SysLoginHdBar.vue'), //系统登录顶部栏
-		SysLoginBd: () => import('../components/sysLogin/SysLoginBd.vue'), //系统登录主体
-		SysLoginFtBar: () => import('../components/sysLogin/SysLoginFtBar.vue') //系统登录底部栏
+		SysLoginHdBar: () => import('./components/SysLoginHdBar.vue'), //系统登录顶部栏
+		SysLoginBd: () => import('./components/SysLoginBd.vue'), //系统登录主体
+		SysLoginFtBar: () => import('./components/SysLoginFtBar.vue') //系统登录底部栏
 	}
 };
 </script>

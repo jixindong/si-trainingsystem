@@ -17,7 +17,7 @@
 			<!-- 单位信息 -->
 			<div v-show="panelSort == '1.1'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>单位信息</span>
 				</div>
 
@@ -111,7 +111,7 @@
 			<!-- 单位人员情况 -->
 			<div v-show="panelSort == '1.2'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>单位人员情况</span>
 				</div>
 
@@ -295,7 +295,7 @@
 			<!-- 职工增减变化 -->
 			<div v-show="panelSort == '1.3'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>职工增减变化查询</span>
 				</div>
 
@@ -338,7 +338,7 @@
 			<!-- 单位缴费情况 -->
 			<div v-show="panelSort == '1.4'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>单位缴费情况</span>
 				</div>
 
@@ -402,7 +402,7 @@
 			<!-- 打印单位参保缴费证明 -->
 			<div v-show="panelSort == '1.5'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>打印单位参保缴费证明</span>
 				</div>
 
@@ -467,7 +467,7 @@
 			<!-- 人员缴费情况 -->
 			<div v-show="panelSort == '1.6'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>人员缴费情况</span>
 				</div>
 
@@ -541,7 +541,7 @@
 			<!-- 缴费单据 -->
 			<div v-show="panelSort == '1.7'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>缴费单据查询</span>
 				</div>
 
@@ -586,7 +586,7 @@
 			<!-- 发票邮寄地址信息 -->
 			<div v-show="panelSort == '1.8'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>发票邮寄地址信息</span>
 				</div>
 
@@ -619,7 +619,7 @@
 			<!-- 单位定期待遇汇总信息 -->
 			<div v-show="panelSort == '1.9'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>单位定期待遇汇总信息</span>
 				</div>
 
@@ -661,7 +661,7 @@
 			<!-- 单位工伤已拨付 -->
 			<div v-show="panelSort == '1.10'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>单位工伤已拨付</span>
 				</div>
 
@@ -672,7 +672,7 @@
 			<!-- 工商登记信息 -->
 			<div v-show="panelSort == '1.11'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>工商登记信息</span>
 				</div>
 
@@ -683,7 +683,7 @@
 			<!-- 工伤拨付明细 -->
 			<div v-show="panelSort == '1.12'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>工伤拨付明细</span>
 				</div>
 
@@ -694,7 +694,7 @@
 			<!-- 单位人员证照采集 -->
 			<div v-show="panelSort == '1.13'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>单位人员证照采集</span>
 				</div>
 
@@ -705,7 +705,7 @@
 			<!-- 电子单据信息 -->
 			<div v-show="panelSort == '1.14'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>电子单据信息查询</span>
 				</div>
 
@@ -733,7 +733,7 @@
 			<!-- 冲销电子单据信息 -->
 			<div v-show="panelSort == '1.15'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>冲销电子单据信息查询</span>
 				</div>
 
@@ -744,7 +744,7 @@
 			<!-- 申报打印 -->
 			<div v-show="panelSort == '1.16'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>申报打印</span>
 				</div>
 
@@ -757,7 +757,7 @@
 			<!-- 用工备案 -->
 			<div v-show="panelSort == '2.1'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>用工备案查询</span>
 				</div>
 
@@ -857,7 +857,7 @@
 			<!-- 集体合同 -->
 			<div v-show="panelSort == '2.2'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>集体合同查询</span>
 				</div>
 
@@ -869,7 +869,7 @@
 			<!-- ======================== 申报信息 ======================== -->
 			<div v-show="panelSort == '3' || panelSort == '3.1' || panelSort == '3.2' || panelSort == '3.3' || panelSort == '3.3.1' || panelSort == '3.3.2'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>申报信息</span>
 				</div>
 
@@ -1104,7 +1104,7 @@
 			<!-- ======================== 消息查询 ======================== -->
 			<div v-show="panelSort == '4'">
 				<div class="titleBox fRow">
-					<img class="mgR10" src="../../assets/edit.png" />
+					<img class="mgR10" src="@/assets/edit.png" />
 					<span>消息查询</span>
 				</div>
 
@@ -1128,136 +1128,136 @@ export default {
 				{
 					id: '1',
 					label: '社会保险',
-					img: require('../../assets/si2.png'),
+					img: require('@/assets/si2.png'),
 					children: [
 						{
 							id: '1.1',
 							label: '单位信息查询',
-							img: require('../../assets/architecture.png')
+							img: require('@/assets/architecture.png')
 						},
 						{
 							id: '1.2',
 							label: '单位人员查询',
-							img: require('../../assets/editorialStaff.png')
+							img: require('@/assets/editorialStaff.png')
 						},
 						{
 							id: '1.3',
 							label: '人员增减情况查询',
-							img: require('../../assets/editorialStaff.png')
+							img: require('@/assets/editorialStaff.png')
 						},
 						{
 							id: '1.4',
 							label: '单位缴费情况',
-							img: require('../../assets/bill.png')
+							img: require('@/assets/bill.png')
 						},
 						{
 							id: '1.5',
 							label: '打印单位参保证明',
-							img: require('../../assets/printer.png')
+							img: require('@/assets/printer.png')
 						},
 						{
 							id: '1.6',
 							label: '人员缴费情况',
-							img: require('../../assets/bill.png')
+							img: require('@/assets/bill.png')
 						},
 						{
 							id: '1.7',
 							label: '缴费单据查询',
-							img: require('../../assets/bill.png')
+							img: require('@/assets/bill.png')
 						},
 						{
 							id: '1.8',
 							label: '发票邮寄地址维护',
-							img: require('../../assets/bill.png')
+							img: require('@/assets/bill.png')
 						},
 						{
 							id: '1.9',
 							label: '单位定期待遇汇总',
-							img: require('../../assets/magnifyingGlass.png')
+							img: require('@/assets/magnifyingGlass.png')
 						},
 						// {
 						// 	id: '1.10',
 						// 	label: '单位工伤已拨付',
-						// 	img: require('../../assets/person.png')
+						// 	img: require('@/assets/person.png')
 						// },
 						// {
 						// 	id: '1.11',
 						// 	label: '工商登记信息',
-						// 	img: require('../../assets/editorialStaff.png')
+						// 	img: require('@/assets/editorialStaff.png')
 						// },
 						// {
 						// 	id: '1.12',
 						// 	label: '工伤拨付明细',
-						// 	img: require('../../assets/editorialStaff.png')
+						// 	img: require('@/assets/editorialStaff.png')
 						// },
 						// {
 						// 	id: '1.13',
 						// 	label: '单位人员证照采集',
-						// 	img: require('../../assets/editorialStaff.png')
+						// 	img: require('@/assets/editorialStaff.png')
 						// },
 						{
 							id: '1.14',
 							label: '电子单据信息查询',
-							img: require('../../assets/bill.png')
+							img: require('@/assets/bill.png')
 						},
 						// {
 						// 	id: '1.15',
 						// 	label: '冲销电子单据信息查询',
-						// 	img: require('../../assets/bill.png')
+						// 	img: require('@/assets/bill.png')
 						// },
 						{
 							id: '1.16',
 							label: '申报打印',
-							img: require('../../assets/printer.png')
+							img: require('@/assets/printer.png')
 						}
 					]
 				},
 				{
 					id: '2',
 					label: '劳动关系',
-					img: require('../../assets/monitor.png'),
+					img: require('@/assets/monitor.png'),
 					children: [
 						{
 							id: '2.1',
 							label: '用工备案查询',
-							img: require('../../assets/magnifyingGlass.png')
+							img: require('@/assets/magnifyingGlass.png')
 						}
 						// {
 						// 	id: '2.2',
 						// 	label: '集体合同查询',
-						// 	img: require('../../assets/magnifyingGlass.png')
+						// 	img: require('@/assets/magnifyingGlass.png')
 						// }
 					]
 				},
 				{
 					id: '3',
 					label: '申报查询',
-					img: require('../../assets/find.png'),
+					img: require('@/assets/find.png'),
 					children: [
 						{
 							id: '3.1',
 							label: '未提交',
-							img: require('../../assets/magnifyingGlass.png')
+							img: require('@/assets/magnifyingGlass.png')
 						},
 						{
 							id: '3.2',
 							label: '正在审核',
-							img: require('../../assets/magnifyingGlass.png')
+							img: require('@/assets/magnifyingGlass.png')
 						},
 						{
 							id: '3.3',
 							label: '审核完成',
-							img: require('../../assets/magnifyingGlass.png'),
+							img: require('@/assets/magnifyingGlass.png'),
 							children: [
 								{
 									id: '3.3.1',
 									label: '审核完成未读',
-									img: require('../../assets/magnifyingGlass.png')
+									img: require('@/assets/magnifyingGlass.png')
 								},
 								{
 									id: '3.3.2',
 									label: '审核完成已读',
-									img: require('../../assets/magnifyingGlass.png')
+									img: require('@/assets/magnifyingGlass.png')
 								}
 							]
 						}
@@ -1266,7 +1266,7 @@ export default {
 				{
 					id: '4',
 					label: '消息查询',
-					img: require('../../assets/si2.png')
+					img: require('@/assets/si2.png')
 				}
 			],
 			menuProps: {
@@ -1373,7 +1373,7 @@ export default {
 		// ------------------------ 导出Excel ------------------------
 		exportExcel(tHeader, filterVal, list, fileName) {
 			require.ensure([], () => {
-				let { export_json_to_excel } = require('../../vendor/Export2Excel.js');
+				let { export_json_to_excel } = require('@/vendor/Export2Excel.js');
 				let data = this.formatJson(filterVal, list);
 				export_json_to_excel(tHeader, data, fileName);
 			});
