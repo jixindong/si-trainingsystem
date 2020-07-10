@@ -11,14 +11,13 @@ export default {
 		};
 	},
 	computed: {
-		// 企业信息
-		entInfo() {
-			return this.$store.state.entInfo;
+		answer() {
+			return this.$store.state;
 		}
 	},
 	watch: {
 		isCompleted() {
-			this.sendMessage('answer', { answer: this.entInfo });
+			this.sendMessage('answer', { answer: this.answer });
 		}
 	},
 	methods: {
