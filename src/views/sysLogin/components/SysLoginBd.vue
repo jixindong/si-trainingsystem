@@ -5,12 +5,12 @@
 			<div class="loginBox">
 				<div class="title">单位用户登录</div>
 				<div class="subtitle">用户编号：</div>
-				<input type="text" v-model="iAccount" />
+				<input type="text" v-model="iAccount" autocomplete="off"/>
 				<div class="subtitle">密码：</div>
-				<input type="password" v-model="iPassword" />
+				<input type="password" v-model="iPassword" autocomplete="off"/>
 				<div class="subtitle">验证码：</div>
 				<div class="vCodeBox">
-					<input type="text" name="iVCode" maxlength="4" v-model="iVCode" />
+					<input type="text" name="iVCode" maxlength="4" v-model="iVCode" autocomplete="off"/>
 					<img class="vCodeImg" src="@/assets/verificationCode.png" />
 				</div>
 				<div class="loginBtn hover" @click="login()">登录</div>

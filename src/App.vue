@@ -12,7 +12,7 @@ export default {
 	},
 	computed: {
 		answer() {
-			return this.$store.state;
+			return this.$store.state.answer;
 		}
 	},
 	watch: {

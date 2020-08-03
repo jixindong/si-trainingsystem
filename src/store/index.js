@@ -501,7 +501,9 @@ const store = new Vuex.Store({
 				'无固定期限',
 				'以完成一定任务为期限'
 			]
-		}
+		},
+		// 答案
+		answer:{}
 	},
 	getters: {},
 	mutations: {
@@ -509,6 +511,9 @@ const store = new Vuex.Store({
 		// 修改密码
 		modifyPassword(state, mp) {
 			state.entInfo.entAccount.password = mp;
+			
+			// 更新答案
+			state.answer.entAccount = state.entInfo.entAccount;
 		},
 		// 更新企业职工信息 职工数量
 		updateEntStaffInfo(state, us) {
@@ -535,6 +540,9 @@ const store = new Vuex.Store({
 			if (isMinusStaff) {
 				state.entInfo.entMinusStaff = [];
 			}
+			
+			// 更新答案
+			state.answer.entStaffInfo = state.entInfo.entStaffInfo;
 		},
 		// 修改企业职工信息 职工信息
 		modifyEntStaffInfo(state, ms) {
@@ -545,6 +553,9 @@ const store = new Vuex.Store({
 					}
 				});
 			});
+			
+			// 更新答案
+			state.answer.entStaffInfo = state.entInfo.entStaffInfo;
 		},
 		// 更新企业职工工资情况
 		updateEntStaffWageStatus(state, sw) {
@@ -555,30 +566,48 @@ const store = new Vuex.Store({
 					}
 				});
 			});
+			
+			// 更新答案
+			state.answer.entStaffInfo = state.entInfo.entStaffInfo;
 		},
 		// 更新企业人员增减情况
 		updateEntStaffChange(state, sc) {
 			sc.forEach(e => {
 				state.entInfo.entStaffChange.push(e);
 			});
+			
+			// 更新答案
+			state.answer.entStaffChange = state.entInfo.entStaffChange;
 		},
 		// 企业缴费情况
 		entChargeStatus(state, cs) {
 			cs.forEach(e => {
 				state.entInfo.entChargeStatus.push(e);
 			});
+			
+			// 更新答案
+			state.answer.entChargeStatus = state.entInfo.entChargeStatus;
 		},
 		// 修改企业发票邮寄地址信息
 		modifyEntIMA(state, ia) {
 			state.entInfo.entInvoiceMailingAddr = ia;
+			
+			// 更新答案
+			state.answer.entInvoiceMailingAddr = state.entInfo.entInvoiceMailingAddr;
 		},
 		// 企业在职增员
 		entAddStaff(state, as) {
 			state.entInfo.entAddStaff = as;
+			
+			// 更新答案
+			state.answer.entAddStaff = state.entInfo.entAddStaff;
 		},
 		// 企业在职减员
 		entMinusStaff(state, ms) {
 			state.entInfo.entMinusStaff = ms;
+			
+			// 更新答案
+			state.answer.entMinusStaff = state.entInfo.entMinusStaff;
 		}
 	},
 	actions: {
